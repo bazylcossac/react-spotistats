@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.someWhite{
+    color: #c3c2c2
+}
+.someGray{
+    color: #9F9F9F
+}
+
+.artist-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 10px 15px;
+
+  }
+  
+  .artist {
+    flex-shrink: 0;
+    margin-right:15px;
+  }
+  
+  .artist img {
+    width: 87px;
+    height: 87px;
+  }
+
+.tracks-container{
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 300px;
+    margin-top:5px;
+    overflow-x: hidden;
+}
+
+.track{
+    flex-shrink: 0;
+}
+
+.track img{
+    width:70px
+}
+.background{
+  background-color: #1D1D1D;
+}
