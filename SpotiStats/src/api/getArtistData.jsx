@@ -2,17 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 
-const getArtistData = async(id, topTracks = false, topAlbums = false, relatedArtists = false) => {
+const getArtistData = async(id, endpoint = "") => {
 
-  const endpoints = {
-    topTracks : 'top-tracks',
-    topAlbums : 'albums',
-    relatedArtists : 'related-artists'
-  }
-
-  const endpoint = topTracks ? endpoints.topTracks : 
-                  topAlbums ? endpoints.topAlbums : 
-                  relatedArtists ? endpoints.relatedArtists : ''
 
   const token = sessionStorage.getItem('token')
   

@@ -13,8 +13,6 @@
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
-    margin: 10px 15px;
-
   }
   
   .artist {

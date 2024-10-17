@@ -56,7 +56,7 @@ const AllPage = () => {
             <p className="someGray text-sm font-bold">See more</p>
           </div>
       
-          <div className="artist-container mt-12">
+          <div className="artist-container m-4">
             {artistElements}
           </div>
 
