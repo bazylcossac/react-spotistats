@@ -2,8 +2,8 @@ import React, {useRef} from 'react'
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AudioPlayer from './AudioPlayer';
-const ArtistPage = ({data, handleReload, prevId}) => {
-    console.log(prevId);
+const ArtistPage = ({data, handleReload}) => {
+
     /// TO DO
     /// UTORY ARTYSTOW PUSZCZAJA PREVKI
     const navigate = useNavigate()
@@ -11,7 +11,7 @@ const ArtistPage = ({data, handleReload, prevId}) => {
     const topTracks = data[1]?.data.tracks
     const topAlbums = data[2]?.data.items.slice(0,10)
     const relatedArtists = data[3]?.data.artists.slice(0,10)
-  console.log(relatedArtists);
+  
 
     const filteredAlbums = topAlbums.filter(album => album.album_type === 'album')
 
@@ -30,7 +30,6 @@ const ArtistPage = ({data, handleReload, prevId}) => {
     }
 
     const tracksElement = topTracks?.map((track, index) => {
-      console.log(track);
       return (
           <div key={track.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md">
               <div className="flex flex-row justify-between items-center">
@@ -55,7 +54,7 @@ const ArtistPage = ({data, handleReload, prevId}) => {
   return (
     <div className='mx-4 mt-2 flex flex-col'>
       <div className='flex flex-row justify-between items-center'>
-        {/* <Link to={`/${[prevId]}`} className='inline-block'><FaLongArrowAltLeft color="#B0B0B0" size={20} className=''/></Link> */}
+      
         <div onClick={goBack} className='inline-block'><FaLongArrowAltLeft color="#B0B0B0" size={20} className=''/></div>
         <span className='mt-2 flex flex-row space-x-2 p-2'>{artistData.genres.slice(0,3).map(genre => <div key={genre} className='text-xs font-bold text-[#313131] bg-[#8B8B8B] px-2 py-1 rounded-lg '>{genre}</div>)}</span>
       </div>

@@ -4,19 +4,23 @@ import getArtistData from '../api/getArtistData'
 import ArtistPage from '../pages/ArtistPage'
 const ArtistDetailsPage = () => {
 
-  const {id} = useParams()
-
+  console.log('artist deatil page');
+  let {id} = useParams()
+  console.log(id);
   const [loading, setLoading] = useState(true)
   const [artistData, setArtistData] = useState([])
   const [err, setErr] = useState('')
   const [reload, setReload ] = useState(false)
-  const [prevId, setPrevId] = useState(null)
+  const [artistId, setArtistId] = useState(id)
+  
+  
+
 
   // const [artistTopTracks, setArtistTopTracks] = useState([])
   // const [artist]
 
   useEffect(() => {
-  
+    
     const fetchArtistData = async() => {
       try{
         const results = await Promise.all([
@@ -25,8 +29,10 @@ const ArtistDetailsPage = () => {
            getArtistData(id,"albums"), /// TOP ALBUMS
            getArtistData(id,"related-artists") /// RELATET ARTISTS
          ])
+         
          setArtistData(results)
          setLoading(false)
+    
       }
       catch(err){
         setErr(err.message)
@@ -35,11 +41,7 @@ const ArtistDetailsPage = () => {
 
     fetchArtistData()
 
-    return () => {
-      setPrevId(id)
-    }
-
-  }, [reload])
+  }, [id])
 
   const handleReload = () => {
     setReload(prev => !prev)
@@ -59,7 +61,7 @@ if(err){
 
 
     <div>
-        <ArtistPage data={artistData} handleReload={handleReload} prevId={prevId}  />
+        <ArtistPage data={artistData} handleReload={handleReload}  />
     </div>
    
   )

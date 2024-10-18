@@ -6,7 +6,9 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 
 const AllPage = () => {
-  const [topArtists, topTracks, loading] = useOutletContext()
+  const [topArtists, topTracks, loading, top1Artist] = useOutletContext()
+  // const top1Artist = topArtists[0]
+  console.log(top1Artist)
 
 
     if(loading){
@@ -27,7 +29,7 @@ const AllPage = () => {
 
 
     const tracksElement = topTracks?.map((track, index) => {
-        console.log(track.album.artists[0].id);
+        
         return (
             <div key={track.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md">
                 <div className="flex flex-row justify-between items-center">
@@ -55,7 +57,8 @@ const AllPage = () => {
             <p className="someWhite font-bold text-lg">Top artists</p>
             <p className="someGray text-sm font-bold">See more</p>
           </div>
-      
+        
+          
           <div className="artist-container m-4">
             {artistElements}
           </div>
