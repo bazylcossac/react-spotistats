@@ -7,12 +7,12 @@ const useFetchUserData = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-      if(!sessionStorage.getItem('login')){
+      if(!localStorage.getItem('login')){
        navigate("/login")
       }
       
       const getUserData = async() => {
-        const user = await fetchUserData(sessionStorage.getItem('token'))
+        const user = await fetchUserData(localStorage.getItem('token'))
         setUserData(user)
       }
     

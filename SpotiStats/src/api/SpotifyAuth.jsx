@@ -41,9 +41,9 @@ const SpotifyAuth = () => {
         }
 
         
-        sessionStorage.setItem('token', response.data.access_token)
-        sessionStorage.setItem('login', true)
-        fetchUserData(sessionStorage.getItem('token'))
+        localStorage.setItem('token', response.data.access_token)
+        localStorage.setItem('login', true)
+        fetchUserData(localStorage.getItem('token'))
         
       } catch (error) {
         console.log(error);

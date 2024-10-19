@@ -1,11 +1,11 @@
-import React from 'react'
+
 import axios from 'axios'
 
 
 const getArtistData = async(id, endpoint = "") => {
 
-
-  const token = sessionStorage.getItem('token')
+  /// endpoints: 'top-tracks' 'albums', 'related-artists'
+  const token = localStorage.getItem('token')
   
   try{
     const response = await axios.get(`https://api.spotify.com/v1/artists/${id}/${endpoint}`, {

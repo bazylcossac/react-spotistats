@@ -2,6 +2,7 @@ import React, {useRef} from 'react'
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AudioPlayer from './AudioPlayer';
+import {spacedFollowers} from '../Tools/Tools';
 const ArtistPage = ({data, handleReload}) => {
 
     /// TO DO
@@ -17,13 +18,6 @@ const ArtistPage = ({data, handleReload}) => {
 
 
 
-    const spacedFollowers = (followers) => {
-       const str = followers.toString()
-        const reversed = str.split('').reverse().join('');
-        const spacedReversed = reversed.replace(/(.{3})/g, '$1 ');
-        return spacedReversed.split('').reverse().join('').trim()
-    }
-
     const goBack = () => {
         navigate(-1)
         handleReload()
@@ -31,14 +25,14 @@ const ArtistPage = ({data, handleReload}) => {
 
     const tracksElement = topTracks?.map((track, index) => {
       return (
-          <div key={track.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md">
-              <div className="flex flex-row justify-between items-center">
+          <div key={track.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md shadow-lg">
+              <div className="flex flex-row justify-between items-center ">
                   <div className="flex flex-row items-center">
                       <p className="text-white font-bold">{index + 1}</p>
                       <Link to="/">
                           <img src={track.album.images[0].url} alt={track.name} className="rounded-lg shadow-md ml-4" />
                       </Link>
-                     <Link to={`/${track.album.artists[0].id}`}> <div onClick={handleReload} className="ml-4 w-52 h-full overflow-x-auto">
+                     <Link to={`/${track.album.artists[0].id}`}> <div onClick={handleReload} className="ml-4 w-52 h-full element">
                           <p className="someWhite font-bold text-md">{track.name}</p>
                           <p className="someWhite text-sm">{track.artists.map(artist => `${artist.name} `)}</p>
                       </div></Link>
@@ -52,25 +46,25 @@ const ArtistPage = ({data, handleReload}) => {
 
 
   return (
-    <div className='mx-4 mt-2 flex flex-col'>
+    <div className='mx-4 mt-4 flex flex-col'>
       <div className='flex flex-row justify-between items-center'>
       
         <div onClick={goBack} className='inline-block'><FaLongArrowAltLeft color="#B0B0B0" size={20} className=''/></div>
-        <span className='mt-2 flex flex-row space-x-2 p-2'>{artistData.genres.slice(0,3).map(genre => <div key={genre} className='text-xs font-bold text-[#313131] bg-[#8B8B8B] px-2 py-1 rounded-lg '>{genre}</div>)}</span>
+        <span className='mt-2 flex flex-row space-x-2 p-2'>{artistData.genres.slice(0,3).map(genre => <div key={genre} className='text-xs font-bold text-[#313131] text-center bg-[#8B8B8B] px-2 py-1 rounded-lg shadow-lg'>{genre}</div>)}</span>
       </div>
       
-       
+          {/* ARTIST */}
         <div className='relative mt-2'>
           <div className='relative z-20'>
             <div className='flex flex-col text-white p-2'>
-                <h1 className='text-3xl font-bold mt-4'>{artistData.name}</h1>   
+                <h1 className='text-3xl font-bold mt-4 '>{artistData.name}</h1>   
             </div>
           </div>
  
           <div className="absolute inset-0 bg-black opacity-50 z-10 rounded-lg"></div>
 
             <div className='h-44'>
-              <img src={artistData.images[0].url} alt={artistData.name} className='absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg '/>
+              <img src={artistData.images[0].url} alt={artistData.name} className='absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg shadow-lg'/>
             </div>
 
             <div className='flex flex-row items-center'>
@@ -80,23 +74,30 @@ const ArtistPage = ({data, handleReload}) => {
         </div>
         
 
+        {/* ALBUMS */}
+
         <p className='someWhite font-bold mt-2'>Albums</p>        
-        <div className='artist-container my-4'>
-                {filteredAlbums.map(track => <div key={track.name} className='artist text-xs text-center overflow-hidden' >
+        <div className='artist-container my-4 element'>
+                {filteredAlbums.map(track => <div key={track.name} className='artist text-xs text-center shadow-xl' >
                     <img src={track.images[0].url} className='rounded-lg'/>
                 </div>)}
          
         </div>
 
+        {/* TRACKS ELEMENS */}
+
         <p className='someWhite font-bold mt-2'>Tracks</p>        
-        <div className="tracks-container -mx-2 mt-4">
+        <div className="tracks-container -mx-2 mt-4 element">
          {tracksElement}
         </div>  
-        <p className='someWhite font-bold '>Check also</p>        
-        <div className="artist-container my-4">
-        {relatedArtists.map(artist =><div key={artist.id} onClick={handleReload} className='artist text-xs mx-2 text-center overflow-hidden' >
+
+        {/* RELATED ARTISTS */}
+
+        <p className='someWhite font-bold mt-4'>Check also</p>        
+        <div className="artist-container my-4 element">
+        {relatedArtists.map(artist =><div key={artist.id} onClick={handleReload} className='artist text-xs mx-2 text-center truncate shadow-lg' >
                 <Link to={`/${artist.id}`}> <img src={artist.images[0].url} className='rounded-full'/>
-                <p className='someWhite text-xs font-bold mt-1'>{artist.name}</p>
+                <p className='someWhite text-xs font-bold mt-1 overflow-auto w-24'>{artist.name}</p>
                 </Link>
                 </div>)}
         </div>

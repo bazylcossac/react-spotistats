@@ -35,6 +35,8 @@
     overflow-x: hidden;
 }
 
+
+
 .track{
     flex-shrink: 0;
 }
@@ -44,4 +46,12 @@
 }
 .background{
   background-color: #1D1D1D;
+}
+
+.element {
+  overflow: scroll; /* lub auto, w zależności od potrzeb */
+}
+
+.element::-webkit-scrollbar {
+  display: none; /* Ukrywa scrollbar */
 }

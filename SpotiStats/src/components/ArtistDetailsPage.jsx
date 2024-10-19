@@ -4,9 +4,8 @@ import getArtistData from '../api/getArtistData'
 import ArtistPage from '../pages/ArtistPage'
 const ArtistDetailsPage = () => {
 
-  console.log('artist deatil page');
   let {id} = useParams()
-  console.log(id);
+
   const [loading, setLoading] = useState(true)
   const [artistData, setArtistData] = useState([])
   const [err, setErr] = useState('')

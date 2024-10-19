@@ -4,6 +4,7 @@ import {Link, Navigate, useNavigate, useOutletContext, Outlet} from 'react-route
 
 import MainPageNav from "./MainPageNav"
 import getUsersTopData from '../api/getUsersTopData'
+import getUserPlaylists from '../api/getUserPlaylists'
 
 /// TU IMPORT DO  ZAKLADEK (ALL, TRACKS ,ARTISTS, NEW )
 
@@ -13,7 +14,7 @@ const MainPage = () => {
 
     const [topArtists, setTopArtists] = useState(null)
     const [topTracks, setTopTracks] = useState(null)
-    const [top1Artist, setTop1Artist] = useState(null)
+    const [userPlaylists, setUserPlaylists] = useState(null)
     const [loading, setLoading] = useState(true)
     const [term, setTerm] = useState({term:"short_term"})
 
@@ -21,12 +22,14 @@ const MainPage = () => {
     useEffect(() => {
         const fetchData = async() => {
   
-            const userArtists = await getUsersTopData('artists', 10, term)
+            const userArtists = await getUsersTopData('artists', 9, term)
             const userTracks = await getUsersTopData('tracks', 9, term)
+            const userPlaylists = await getUserPlaylists()
             setTopArtists(userArtists.data.items)
-            setTop1Artist(userArtists.data.items[0])
             setTopTracks(userTracks.data.items)
+            setUserPlaylists(userPlaylists.data.items)
             setLoading(false)
+            console.log(userPlaylists);
 
         }
         
@@ -41,7 +44,7 @@ const MainPage = () => {
   return (
     <>
       <MainPageNav handleTermChange={handleTermChange} term={term}/>
-      <Outlet context={[topArtists, topTracks, loading, top1Artist]}/>
+      <Outlet context={[topArtists, topTracks, loading, userPlaylists]}/>
     </>
   )
 }

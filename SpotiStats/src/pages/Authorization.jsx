@@ -4,7 +4,7 @@ import SpotifyAuth from '../api/SpotifyAuth'
 
 const Autorization = () => {
     const navigate = useNavigate()
-    const userAuthzation = sessionStorage.getItem('login')
+    const userAuthzation = localStorage.getItem('login')
 
   
     if(!userAuthzation || userAuthzation === null){

@@ -8,32 +8,16 @@ import useFetchUserData from '../customHooks/useFetchUserData'
 import SpotifyAuth from '../api/SpotifyAuth'
 
 
+
 const Layout = () => {
+  
+   const user = useFetchUserData()  
 
-  
 
-
-  let user
-  const job = new CronJob(
-    '*/59 * * * *',
-    function () {
-      SpotifyAuth()
-    }, 
-    null, 
-    true, 
-    'Europe/Warsaw'
-  );
-  job.start()
-  //
-  
-   user = useFetchUserData()
- 
-  
-  
   return (
     <>
       <Header data={user} />
-      <Outlet context={user}/>
+      <Outlet context={user} />
     </>
     
   )

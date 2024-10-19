@@ -56,7 +56,7 @@ const MainPageNav = (props) => {
                 </NavLink>
 
             </div>
-            <div className='mt-4 mr-2'>
+            <div className='mr-2 mt-4'>
                 <select
                         name='term'
                         className='bg-[#353535] text-[#B0B0B0] text-center text-xs rounded-lg py-2 px-1 font-semibold'

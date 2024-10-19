@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
 const fetchUserData = async(token) => {
-    if(sessionStorage.getItem('login')){
+    if(localStorage.getItem('login')){
         try{
             const response = await axios.get("https://api.spotify.com/v1/me", {
                 headers: {
