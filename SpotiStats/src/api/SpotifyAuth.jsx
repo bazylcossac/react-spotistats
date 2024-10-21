@@ -2,17 +2,18 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import fetchUserData from './fetchUserData'
-
+import { getCookieValue } from '../Tools/Tools'
 
 const SpotifyAuth = () => {
   
     const [searchParams] = useSearchParams();
+    const [token, setToken] = useState('')
     const navigate = useNavigate()
     useEffect(() => {
       const code = searchParams.get('code');
-      console.log(code);
       if (code) {
         getToken(code); 
+    
         
       }
     }, [searchParams]);
@@ -34,22 +35,21 @@ const SpotifyAuth = () => {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
-    
         });
+
+        document.cookie = `token=${response.data.access_token}; max-age=3300; path=/`
+        localStorage.setItem('login', true)
+        fetchUserData(getCookieValue('token'))   
+
         if(response.status === 200){
           navigate('/')
         }
 
-        
-        localStorage.setItem('token', response.data.access_token)
-        localStorage.setItem('login', true)
-        fetchUserData(localStorage.getItem('token'))
-        
       } catch (error) {
         console.log(error);
       }
     };
-  
+   
   
   };
   

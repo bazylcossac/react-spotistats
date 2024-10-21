@@ -1,10 +1,10 @@
 import axios from 'axios'
-
+import { getCookieValue } from '../Tools/Tools'
 
 export async function getSpotifyData(params, limit = 10){
     console.log("fetching");
   
-    const token = localStorage.getItem('token')
+    const token = getCookieValue('token')
     // const formatedQ = q.split(' ').join('+')
 
 

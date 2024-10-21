@@ -12,12 +12,12 @@ const MainPage = () => {
   
 
 
-    const [topArtists, setTopArtists] = useState(null)
+    const [topArtists, setTopArtists] = useState(null) 
     const [topTracks, setTopTracks] = useState(null)
     const [userPlaylists, setUserPlaylists] = useState(null)
     const [loading, setLoading] = useState(true)
     const [term, setTerm] = useState({term:"short_term"})
-
+     
 
     useEffect(() => {
         const fetchData = async() => {
@@ -35,6 +35,7 @@ const MainPage = () => {
         
         fetchData()
     },[term]) 
+
     
     const handleTermChange = (event) => {
       const {name, value} = event.target
@@ -50,3 +51,4 @@ const MainPage = () => {
 }
 
 export default MainPage
+

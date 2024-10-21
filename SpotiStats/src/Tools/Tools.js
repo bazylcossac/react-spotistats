@@ -7,8 +7,18 @@ const spacedFollowers = (followers) => {
 
 const popularityWidth = (popularity) => {
     const firstValue =  popularity / 100
-    
      return (firstValue * 12).toFixed(0)
-} 
+}
 
-export {spacedFollowers, popularityWidth}
+const getCookieValue = (name) =>{
+    const cookies = document.cookie.split('; ')
+    for(let cookie of cookies){
+        const [cookieName, cookieValue] = cookie.split('=')
+        if(cookieName === name){
+            return cookieValue
+        }
+    }
+    return null
+}
+
+export {spacedFollowers, popularityWidth, getCookieValue}

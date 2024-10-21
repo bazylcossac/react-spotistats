@@ -1,11 +1,12 @@
 
 import axios from 'axios'
+import { getCookieValue } from '../Tools/Tools'
 
 
-const getArtistData = async(id, endpoint = "") => {
+const getArtistData = async(id, endpoint = "") => { /// returns endpoint data of artist. 
 
   /// endpoints: 'top-tracks' 'albums', 'related-artists'
-  const token = localStorage.getItem('token')
+  const token = getCookieValue('token')
   
   try{
     const response = await axios.get(`https://api.spotify.com/v1/artists/${id}/${endpoint}`, {

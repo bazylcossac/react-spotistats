@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react'
 import { useNavigate, Navigate, Outlet } from 'react-router-dom'
 import SpotifyAuth from '../api/SpotifyAuth'
+import { getCookieValue } from '../Tools/Tools'
+
 
 const Autorization = () => {
     const navigate = useNavigate()

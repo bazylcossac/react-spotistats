@@ -12,19 +12,19 @@ const Header = ({data}) => {
   const [loading, setLoading] = useState(true)
   const [userData, setUserData] = useState(null)
   const navigate = useNavigate()
-  console.log('usesotify data');
+  
   const [formData, setFormData] = useState({q : "", type: "artist"})
+  
   const [isSubmited, setIsSubmited] = useState(false)
   const [err, setErr] = useState("")
 
 
-  const throttle = (func, delay) => { /// WHY ITS NOT WORKING ????
+  const throttle = (func, delay) => { 
     let timerThrottle = null
     return (...args) => {
       if(timerThrottle === null){
         func(...args)
         timerThrottle = setTimeout(() => {
-         clearTimeout(timerThrottle)
          timerThrottle = null
         }, delay)
       }
@@ -37,14 +37,18 @@ const Header = ({data}) => {
     event.preventDefault()
     setIsSubmited(true)
     setErr("")
-    navigate(`/search?artist=$${formData.q}`) ///
+    const {name, value} = event.target
+    setFormData(prevData => ({...prevData, [name]: value})) 
+    navigate(`/search?artist=$${value}`) ///
     
   }
 
 
   const handleChange = (event) => {
     const {name, value} = event.target
+    console.log(value);
     setFormData(prevData => ({...prevData, [name]: value})) 
+    navigate(`/search?artist=$${value}`) ///
   }
 
   const onKeyDown = (event) => {
@@ -90,7 +94,7 @@ const Header = ({data}) => {
                   name="q" 
                   className='bg-[#131313] placeholder-[#b5b5b5] font-bold rounded-lg px-4 py-4 text-sm outline-none' 
                   placeholder='Search...'
-                  onChange={throttle(handleChange, 1000)}
+                  onChange={handleChange}
                   onKeyDown={onKeyDown}
                   value={formData.q}
                  

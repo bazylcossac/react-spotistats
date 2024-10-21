@@ -25,12 +25,13 @@ const ArtistPage = ({data, handleReload}) => {
 
     const tracksElement = topTracks?.map((track, index) => {
       return (
-          <div key={track.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md shadow-lg">
+        
+          <div key={track?.id} className="track px-4 py-2 my-2 mx-2 bg-[#252525] rounded-md shadow-lg">
               <div className="flex flex-row justify-between items-center ">
                   <div className="flex flex-row items-center">
                       <p className="text-white font-bold">{index + 1}</p>
                       <Link to="/">
-                          <img src={track.album.images[0].url} alt={track.name} className="rounded-lg shadow-md ml-4" />
+                          <img src={track.album?.images ? track.album?.images[0].url : './src/images/noImage.jpg'} alt={track.name} className="rounded-lg shadow-md ml-4" />
                       </Link>
                      <Link to={`/${track.album.artists[0].id}`}> <div onClick={handleReload} className="ml-4 w-52 h-full element">
                           <p className="someWhite font-bold text-md">{track.name}</p>
@@ -64,7 +65,7 @@ const ArtistPage = ({data, handleReload}) => {
           <div className="absolute inset-0 bg-black opacity-50 z-10 rounded-lg"></div>
 
             <div className='h-44'>
-              <img src={artistData.images[0].url} alt={artistData.name} className='absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg shadow-lg'/>
+              <img src={artistData.images.length !== 0  ? artistData.images[0]?.url : './src/images/blackImage.webp'} alt={artistData.name} className='absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg shadow-lg'/>
             </div>
 
             <div className='flex flex-row items-center'>
@@ -79,25 +80,25 @@ const ArtistPage = ({data, handleReload}) => {
         <p className='someWhite font-bold mt-2'>Albums</p>        
         <div className='artist-container my-4 element'>
                 {filteredAlbums.map(track => <div key={track.name} className='artist text-xs text-center shadow-xl' >
-                    <img src={track.images[0].url} className='rounded-lg'/>
+                    <img src={track.images ? track.images[0].url : './src/images/blackImage.webp'} className='rounded-lg'/>
                 </div>)}
          
         </div>
 
         {/* TRACKS ELEMENS */}
-
-        <p className='someWhite font-bold mt-2'>Tracks</p>        
+      
+       { tracksElement.length ? <p className='someWhite font-bold mt-2'>Tracks</p> : ''}
         <div className="tracks-container -mx-2 mt-4 element">
          {tracksElement}
-        </div>  
+        </div>
 
         {/* RELATED ARTISTS */}
 
-        <p className='someWhite font-bold mt-4'>Check also</p>        
+      { relatedArtists.length ?  <p className='someWhite font-bold mt-4'>Check also</p> : ''}
         <div className="artist-container my-4 element">
-        {relatedArtists.map(artist =><div key={artist.id} onClick={handleReload} className='artist text-xs mx-2 text-center truncate shadow-lg' >
-                <Link to={`/${artist.id}`}> <img src={artist.images[0].url} className='rounded-full'/>
-                <p className='someWhite text-xs font-bold mt-1 overflow-auto w-24'>{artist.name}</p>
+        {relatedArtists.map(artist =><div key={artist.id} onClick={handleReload} className='artist text-xs text-center truncate shadow-lg mx-2' >
+                <Link to={`/${artist.id}`}> <img src={artist.images[0] ? artist.images[0].url : './src/images/noImage.jpg'} className='rounded-full'/>
+                <p className='someWhite text-xs font-bold mt-2 overflow-auto break-words w-20'>{artist.name}</p>
                 </Link>
                 </div>)}
         </div>
