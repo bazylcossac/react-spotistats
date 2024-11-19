@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {NavLink, Link, useOutletContext, useNavigate, useSearchParams} from 'react-router-dom'
-import useFetchUserData from '../customHooks/useFetchUserData'
+import {NavLink, Link,  useNavigate} from 'react-router-dom'
 import { GoBell, GoHome, GoPeople } from "react-icons/go";
-import SpotifyAuth from '../api/SpotifyAuth';
 
 
 
@@ -74,7 +72,7 @@ const Header = ({data}) => {
 
   return (
     <div>
-    <header className='bg-black top-0'>
+    <header className='bg-black fixed top-0 w-full z-50'>
         <nav className='flex justify-between items-center text-white p-2'>
 
             <NavLink 

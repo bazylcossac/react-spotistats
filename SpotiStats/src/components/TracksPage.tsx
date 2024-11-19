@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TracksPage = () => {
+function TracksPage() {
   return (
     <div>TracksPage</div>
   )

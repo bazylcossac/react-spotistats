@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {NavLink, Outlet} from 'react-router-dom'
-import {CronJob} from 'cron'
+import React from 'react'
+import { Outlet} from 'react-router-dom'
+
 
 
 import Header from './Header'
 import useFetchUserData from '../customHooks/useFetchUserData'
-import SpotifyAuth from '../api/SpotifyAuth'
+
 
 
 

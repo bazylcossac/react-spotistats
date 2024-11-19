@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { useOutletContext,Link, useSearchParams } from 'react-router-dom'
+import {Link, useSearchParams } from 'react-router-dom'
 
 import { getSpotifyData } from '../api/getSpotifyData'
-import getArtistData from '../api/getArtistData'
 
-import {spacedFollowers, popularityWidth} from '../Tools/Tools'
+import {spacedFollowers} from '../Tools/Tools'
 
 const SearchPage = () => {  
     console.log(' search page');
@@ -52,7 +51,7 @@ const SearchPage = () => {
 
   
      return (
-        <div>
+        <div className='mt-16'>
         <span className='flex flex-row text-[#525252] font-bold p-4'>Results for:<p className='text-white ml-2 truncate'>{searchParams.get('artist').slice(1)}</p> </span>
         
          <div className='px-4 py-4 flex flex-row items-center text-center'>

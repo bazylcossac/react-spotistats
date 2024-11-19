@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import getArtistData from '../api/getArtistData'
 import ArtistPage from '../pages/ArtistPage'
 const ArtistDetailsPage = () => {
