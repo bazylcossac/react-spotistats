@@ -1,44 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 
 import { Outlet } from "react-router-dom";
 
 import MainPageNav from "./MainPageNav";
 import { useUserTopData } from "../api/getUsersTopData";
-import getUserPlaylists from "../api/getUserPlaylists";
-import {
-  TopArtistsType,
-  TopTracksType,
-  UserPlaylistsType,
-} from "../types/AllPageTypes";
+import { useUserPlaylist } from "../api/getUserPlaylists";
+import { TOutletContext } from "../types/OutletContextType";
 import { useAppDataStore } from "../store/AppDataStore";
-import { AxiosResponse } from "axios";
-import { UseQueryResult } from "@tanstack/react-query";
-
-type TOutletContext = {
-  results: UseQueryResult<
-    AxiosResponse<number, Record<string, Object>> | undefined,
-    Error
-  >[];
-  userPlaylists: UserPlaylistsType[] | null;
-};
 
 const MainPage = () => {
+  const token = useAppDataStore((state) => state.token);
   const term = useAppDataStore((state) => state.term);
+  console.log(term);
   const setTerm = useAppDataStore((state) => state.setTerm);
-
-  const results = useUserTopData(["artists", "tracks"], 9, term);
-  console.log(results);
-  const [userPlaylists, setUserPlaylists] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const userPlaylists = await getUserPlaylists();
-      setUserPlaylists(userPlaylists?.data.items);
-    };
-
-    fetchData();
-  }, [term]);
-
+  const results = useUserTopData(["artists", "tracks"], 9, term, token);
+  const { userPlaylists, playlistLoading, isError } = useUserPlaylist(token);
+  const playlists = userPlaylists?.data.items;
   const handleTermChange = (event) => {
     const { name, value } = event.target;
     setTerm(value);
@@ -46,7 +23,8 @@ const MainPage = () => {
 
   const contextValues: TOutletContext = {
     results,
-    userPlaylists,
+    playlists,
+    playlistLoading,
   };
 
   return (

@@ -41,6 +41,7 @@ export function useSpotifySearchData(
     queryFn: () => getSpotifyData(params, limit, token),
     staleTime: 1000 * 60 * 60,
     retry: 2,
+    enabled: !!params,
   });
 
   return { data, isLoading, isError };

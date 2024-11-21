@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
-
-const fetchUserData = async (token: string | undefined) => {
+const getUserData = async (token: string | undefined) => {
   if (localStorage.getItem("login")) {
     try {
       const response = await axios.get("https://api.spotify.com/v1/me", {
@@ -20,10 +19,10 @@ const fetchUserData = async (token: string | undefined) => {
   }
 };
 
-export default function useUserData(token: string | undefined) {
+export  function useUserData(token: string | undefined) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["user-data", token],
-    queryFn: () => fetchUserData(token!),
+    queryFn: () => getUserData(token!),
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: true,
     enabled: !!token,

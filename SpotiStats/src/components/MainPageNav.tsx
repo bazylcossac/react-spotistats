@@ -63,7 +63,7 @@ const MainPageNav = ({ handleTermChange, term }: TMainPageNavProps) => {
           className="bg-[#353535] text-[#B0B0B0] text-center text-xs rounded-lg py-2 px-1 font-semibold"
           onChange={handleTermChange}
           // onKeyDown={onKeyDown}
-          value={term.term}
+          value={term}
         >
           <option value="short_term">MONTH</option>
           <option value="medium_term">6 MONTS</option>

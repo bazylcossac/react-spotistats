@@ -1,24 +1,23 @@
 import React, { memo } from "react";
-import { FaLongArrowAltLeft } from "react-icons/fa";
+
 import { Link, useNavigate } from "react-router-dom";
 import AudioPlayer from "./AudioPlayer";
 
 import { spacedFollowers } from "../Tools/Tools";
 
 type TArtistPage = {
-  data?: Record<string, any>[];
-  handleReload?: () => void;
+  results: any;
 };
 
-const ArtistPage = ({ data, handleReload }: TArtistPage) => {
-  if (!data) return;
-  /// TO DO
-  /// PRZENIESC ELEMENTY STRONY DO SWOICH KOMPONENTOW
+const ArtistPage = ({ results }: TArtistPage) => {
+  if (!results) return;
+
   const navigate = useNavigate();
-  const artistData = data[0]?.data;
-  const topTracks = data[1]?.data.tracks;
-  const topAlbums = data[2]?.data.items.slice(0, 10);
-  const relatedArtists = data[3]?.data.artists.slice(0, 10);
+  const artistData = results[3]?.data.data;
+  const topTracks = results[0]?.data.data.tracks;
+  const topAlbums = results[1]?.data.data.items;
+
+  const relatedArtists = results[2]?.data.data.artists;
 
   const filteredAlbums = topAlbums.filter(
     (album) => album.album_type === "album"
@@ -26,7 +25,6 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
 
   const goBack = () => {
     navigate(-1);
-    handleReload!();
   };
 
   const tracksElement = topTracks?.map((track, index) => {
@@ -51,7 +49,7 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
             </Link>
             <Link to={`/${track.album.artists[0].id}`}>
               {" "}
-              <div onClick={handleReload} className="ml-4  w-52 h-full element">
+              <div className="ml-4  w-52 h-full element">
                 <p className="someWhite font-bold text-md ml-2">{track.name}</p>
                 <p className="someWhite text-sm ml-2">
                   {track.artists.map((artist) => `${artist.name} `)}
@@ -69,7 +67,18 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
     <div className="mx-4 mt-20 flex flex-col">
       <div className="flex flex-row justify-between items-center">
         <div onClick={goBack} className="inline-block">
-          <FaLongArrowAltLeft color="#B0B0B0" size={20} className="" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-7 text-[#8B8B8B]"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+              clipRule="evenodd"
+            />
+          </svg>
         </div>
         <span className="mt-2 flex flex-row space-x-2 p-2">
           {artistData.genres.slice(0, 3).map((genre) => (
@@ -82,7 +91,6 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
           ))}
         </span>
       </div>
-
       {/* ARTIST */}
       <div className="relative mt-2">
         <div className="relative z-20">
@@ -133,16 +141,11 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
           </div>
         </div>
       </div>
-
       {/* ALBUMS */}
-
       <p className="someWhite font-bold mt-2">Albums</p>
       <div className="artist-container my-4 element">
         {filteredAlbums.map((track) => (
-          <div
-            key={track.name}
-            className="artist text-xs text-center shadow-xl"
-          >
+          <div key={track.id} className="artist text-xs text-center shadow-xl">
             <img
               src={
                 track.images
@@ -154,17 +157,13 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
           </div>
         ))}
       </div>
-
       {/* TRACKS ELEMENS */}
-
       {tracksElement.length ? (
         <p className="someWhite font-bold mt-2">Tracks</p>
       ) : (
         ""
       )}
       <div className="tracks-container -mx-2 mt-4 element">{tracksElement}</div>
-
-      {/* RELATED ARTISTS */}
 
       {relatedArtists.length ? (
         <p className="someWhite font-bold mt-4">Check also</p>
@@ -175,7 +174,6 @@ const ArtistPage = ({ data, handleReload }: TArtistPage) => {
         {relatedArtists.map((artist) => (
           <div
             key={artist.id}
-            onClick={handleReload}
             className="artist text-xs text-center truncate shadow-lg mx-2"
           >
             <Link to={`/${artist.id}`}>

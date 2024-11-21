@@ -13,6 +13,7 @@ const SearchPage = () => {
   const token = useAppDataStore((state) => state.token);
   const [searchParams, setSearchParams] = useSearchParams();
   const params = searchParams.get("artist").slice(1);
+  
 
   const { data, isLoading, isError } = useSpotifySearchData(
     useDebounce(params, 250),
@@ -24,7 +25,7 @@ const SearchPage = () => {
   }
   if (isLoading) {
     return <Loading />;
-    }
-    if (data) return <SearchPageResult data={data} searchParams={searchParams} />;
+  }
+  if (data) return <SearchPageResult data={data} searchParams={searchParams} />;
 };
 export default SearchPage;

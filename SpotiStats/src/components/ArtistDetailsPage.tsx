@@ -1,57 +1,26 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import getArtistData from "../api/getArtistData";
+import { useArtistData } from "../api/getArtistData";
 import ArtistPage from "../pages/ArtistPage";
+import Loading from "../Loading";
+import { useAppDataStore } from "../store/AppDataStore";
 const ArtistDetailsPage = () => {
+  const token = useAppDataStore((state) => state.token);
+
   let { id } = useParams();
-
-  const [loading, setLoading] = useState(true);
-  const [artistData, setArtistData] = useState([]);
-  const [err, setErr] = useState("");
-  const [reload, setReload] = useState(false);
-  const [artistId, setArtistId] = useState(id);
-
-  // const [artistTopTracks, setArtistTopTracks] = useState([])
-  // const [artist]
-
-  useEffect(() => {
-    const fetchArtistData = async () => {
-      try {
-        const results = await Promise.all([
-          getArtistData(id), /// ARTIST
-          getArtistData(id, "top-tracks"), /// TOP TRACKS
-          getArtistData(id, "albums"), /// TOP ALBUMS
-          getArtistData(id, "related-artists"), /// RELATET ARTISTS
-        ]);
-
-        setArtistData(results);
-        setLoading(false);
-      } catch (err) {
-        setErr(err.message);
-      }
-    };
-
-    fetchArtistData();
-  }, [id]);
-
-  const handleReload = () => {
-    setReload((prev) => !prev);
-  };
-
-  if (loading) {
-    return (
-      <div className="animate-pulse someWhite font-bold text-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        Loading...
-      </div>
-    );
-  }
-  if (err) {
-    return <div>{err}</div>;
+  const results = useArtistData(
+    id,
+    ["top-tracks", "albums", "related-artists", ""],
+    token
+  );
+  const isLoading = results.some((result) => result.isLoading);
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
     <div>
-      <ArtistPage data={artistData} handleReload={handleReload} />
+      <ArtistPage results={results} />
     </div>
   );
 };

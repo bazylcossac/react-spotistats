@@ -1,11 +1,8 @@
 import axios from "axios";
-import { getCookieValue } from "../Tools/Tools";
-import { useQuery, useQueries } from "@tanstack/react-query";
-const getUsersTopData = async (genre, limit, term) => {
+import { useQueries } from "@tanstack/react-query";
+const getUsersTopData = async (genre, limit, term, token) => {
   console.log("fetching");
   try {
-    const token = getCookieValue("token");
-
     const response = await axios.get(
       `https://api.spotify.com/v1/me/top/${genre}?limit=${limit}&time_range=${term}`,
       {
@@ -23,12 +20,13 @@ const getUsersTopData = async (genre, limit, term) => {
 export function useUserTopData(
   genreArr: string[],
   limit: number,
-  term: string
+  term: string,
+  token: string
 ) {
   const results = useQueries({
     queries: genreArr.map((genre) => ({
       queryKey: ["user-top-data", genre, term],
-      queryFn: () => getUsersTopData(genre, limit, term),
+      queryFn: () => getUsersTopData(genre, limit, term, token),
       staleTime: 1000 * 60 * 60,
       retry: 2,
     })),
