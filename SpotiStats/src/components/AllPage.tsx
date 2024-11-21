@@ -6,6 +6,7 @@ import {
   TopTracksType,
   UserPlaylistsType,
 } from "../types/AllPageTypes";
+import Loading from "../Loading";
 
 type TOutletContext = {
   topArtists: TopArtistsType[] | null;
@@ -15,19 +16,17 @@ type TOutletContext = {
 };
 
 const AllPage = () => {
-  const { topArtists, topTracks, loading, userPlaylists } =
-    useOutletContext<TOutletContext>();
+  const { results, userPlaylists } = useOutletContext<TOutletContext>();
+  const topArtists = results[0]?.data?.data.items;
+  const topTracks = results[1]?.data?.data.items;
+  const isLoading = results.some((result) => result.isLoading);
 
+  console.log(topTracks);
   console.log("all page");
-  if (loading) {
-    return (
-      <div className="animate-pulse someWhite font-bold text-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        Loading...
-      </div>
-    );
+  if (isLoading) {
+    return <Loading />;
   }
 
-  // ARTISTS
   const artistElements = topArtists?.map((artist) => {
     return (
       <div key={artist.id} className="artist ">
@@ -42,7 +41,6 @@ const AllPage = () => {
       </div>
     );
   });
-  /// TRACKS
 
   const tracksElement = topTracks?.map((track, index) => {
     return (
@@ -78,28 +76,28 @@ const AllPage = () => {
   });
 
   /// PLAYLISTS
-  const playlistsElement = userPlaylists?.map((playlist) => {
-    return (
-      <div
-        key={playlist.id}
-        className=" bg-[#252525] flex flex-col rounded-lg shadow-lg  "
-      >
-        <div className="flex flex-row items-start">
-          <img
-            src={playlist.images[0].url}
-            className="size-20 shrink-0 rounded-lg p-2 "
-            loading="lazy"
-          />
-          <p className="someWhite text-center ml-2 mt-1 font-bold">
-            Total: {playlist.tracks.total}
-          </p>
-        </div>
-        <p className="someWhite font-bold my-2 overflow-x-auto text-center">
-          {playlist.name}
-        </p>
-      </div>
-    );
-  });
+  // const playlistsElement = userPlaylists?.map((playlist) => {
+  //   return (
+  //     <div
+  //       key={playlist.id}
+  //       className=" bg-[#252525] flex flex-col rounded-lg shadow-lg  "
+  //     >
+  //       <div className="flex flex-row items-start">
+  //         <img
+  //           src={playlist.images[0].url}
+  //           className="size-20 shrink-0 rounded-lg p-2 "
+  //           loading="lazy"
+  //         />
+  //         <p className="someWhite text-center ml-2 mt-1 font-bold">
+  //           Total: {playlist.tracks.total}
+  //         </p>
+  //       </div>
+  //       <p className="someWhite font-bold my-2 overflow-x-auto text-center">
+  //         {playlist.name}
+  //       </p>
+  //     </div>
+  //   );
+  // });
 
   return (
     <div className="flex flex-col">
@@ -122,9 +120,9 @@ const AllPage = () => {
         <p className="someGray text-sm font-bold">See more</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 px-4 mt-4 h-52 overflow-y-auto whitespace-nowrap element">
+      {/* <div className="grid grid-cols-2 gap-6 px-4 mt-4 h-52 overflow-y-auto whitespace-nowrap element">
         {playlistsElement}
-      </div>
+      </div> */}
     </div>
   );
 };

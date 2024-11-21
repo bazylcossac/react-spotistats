@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 type TMainPageNavProps = {
-  term: Record<string, string>;
+  term: string;
   handleTermChange: (event) => void;
 };
 

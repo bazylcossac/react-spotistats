@@ -3,37 +3,37 @@ import React, { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 
 import MainPageNav from "./MainPageNav";
-import getUsersTopData from "../api/getUsersTopData";
+import { useUserTopData } from "../api/getUsersTopData";
 import getUserPlaylists from "../api/getUserPlaylists";
 import {
   TopArtistsType,
   TopTracksType,
   UserPlaylistsType,
 } from "../types/AllPageTypes";
+import { useAppDataStore } from "../store/AppDataStore";
+import { AxiosResponse } from "axios";
+import { UseQueryResult } from "@tanstack/react-query";
 
 type TOutletContext = {
-  topArtists: TopArtistsType[] | null;
-  topTracks: TopTracksType[] | null;
-  loading: boolean;
+  results: UseQueryResult<
+    AxiosResponse<number, Record<string, Object>> | undefined,
+    Error
+  >[];
   userPlaylists: UserPlaylistsType[] | null;
 };
 
 const MainPage = () => {
-  const [topArtists, setTopArtists] = useState(null);
-  const [topTracks, setTopTracks] = useState(null);
+  const term = useAppDataStore((state) => state.term);
+  const setTerm = useAppDataStore((state) => state.setTerm);
+
+  const results = useUserTopData(["artists", "tracks"], 9, term);
+  console.log(results);
   const [userPlaylists, setUserPlaylists] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [term, setTerm] = useState({ name: "short_term" });
 
   useEffect(() => {
     const fetchData = async () => {
-      const userArtists = await getUsersTopData("artists", 9, term);
-      const userTracks = await getUsersTopData("tracks", 9, term);
       const userPlaylists = await getUserPlaylists();
-      setTopArtists(userArtists?.data.items);
-      setTopTracks(userTracks?.data.items);
       setUserPlaylists(userPlaylists?.data.items);
-      setLoading(false);
     };
 
     fetchData();
@@ -41,13 +41,11 @@ const MainPage = () => {
 
   const handleTermChange = (event) => {
     const { name, value } = event.target;
-    setTerm({ name: value });
+    setTerm(value);
   };
 
   const contextValues: TOutletContext = {
-    topArtists,
-    topTracks,
-    loading,
+    results,
     userPlaylists,
   };
 
