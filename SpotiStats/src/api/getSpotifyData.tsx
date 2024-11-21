@@ -1,35 +1,47 @@
-import axios from 'axios'
-import { getCookieValue } from '../Tools/Tools'
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-export async function getSpotifyData(params, limit = 10){
-    console.log("fetching");
-  
-    const token = getCookieValue('token')
-    // const formatedQ = q.split(' ').join('+')
+type SpotifyDataParams = {
+  params: string;
+  limit: number | undefined;
+  token: string;
+};
 
-
-
-    /// %2Ctrack%2Cartist
-    try{
-        const response = await axios.get(`https://api.spotify.com/v1/search?q=${params}&type=artist&limit=${limit}`, {
-             headers: {
-                 "Authorization" : `Bearer ${token} `
-             }
-             
-         })
-         return response
-    }
-    catch(err) {
-        if(err.status === 400){
-            return {message:<p className='text-white font-bold text-sm mt-4 shadow-md'>Request faild | Please fill search bar</p>}
-        }
-        else{
-            return {message:<p className='text-white font-bold text-sm mt-4 shadow-md'>404 error</p>}
-        }
-    }
-
-
+async function getSpotifyData(
+  params: string,
+  limit: number | undefined = 10,
+  token: string
+) {
+  console.log("fetching");
+  if (!params) {
+    return null;
+  }
+  try {
+    const response = await axios.get(
+      `https://api.spotify.com/v1/search?q=${params}&type=artist&limit=${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token} `,
+        },
+      }
+    );
+    return response;
+  } catch (err) {
+    throw new Error("Coultn't get data");
+  }
 }
 
+export function useSpotifySearchData(
+  params: string,
+  limit: number | undefined = 10,
+  token: string
+) {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["search-data", params],
+    queryFn: () => getSpotifyData(params, limit, token),
+    staleTime: 1000 * 60 * 60,
+    retry: 2,
+  });
 
-
+  return { data, isLoading, isError };
+}

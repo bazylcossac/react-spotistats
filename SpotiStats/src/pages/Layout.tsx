@@ -1,26 +1,27 @@
-import React from 'react'
-import { Outlet} from 'react-router-dom'
-
-
-
-import Header from './Header'
-import useFetchUserData from '../customHooks/useFetchUserData'
-
-
-
+import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import Header from "./Header";
+import useUserData from "../api/fetchUserData";
+import { getCookieValue } from "../Tools/Tools";
+import Loading from "../Loading";
+import { useAppDataStore } from "../store/AppDataStore";
 
 const Layout = () => {
-  
-   const user = useFetchUserData()  
+  const navigate = useNavigate();
+  const token = useAppDataStore((state) => state.token);
+  const { data, isLoading, isError } = useUserData(token);
 
+  if (isError) {
+    navigate("/login");
+  }
 
   return (
     <>
-      <Header data={user} />
-      <Outlet context={user} />
+      {isLoading && <Loading />}
+      {!isLoading && <Header data={data?.data} />}
+      {!isLoading && <Outlet context={data?.data} />}
     </>
-    
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

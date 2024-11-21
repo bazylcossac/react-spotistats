@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 type TMainPageNavProps = {
   term: Record<string, string>;
-  handleTermChange: () => void;
+  handleTermChange: (event) => void;
 };
 
 const MainPageNav = ({ handleTermChange, term }: TMainPageNavProps) => {

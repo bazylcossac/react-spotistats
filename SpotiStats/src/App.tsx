@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 import MainPage from "./components/MainPage";
 import Layout from "./pages/Layout";
@@ -13,33 +14,37 @@ import NewPage from "./components/NewPage";
 import SearchPage from "./components/SearchPage";
 import ArtistDetailsPage from "./components/ArtistDetailsPage";
 
+const queryClient = new QueryClient();
+
 function App() {
   /// TODO
 
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<SignIn />} />
-          <Route path="*" element={<SignIn />} />
-          <Route element={<Authorization />}>
-            <Route path="/" element={<Layout />}>
-              <Route element={<MainPage />}>
-                <Route index element={<AllPage />} />
-                <Route path="tracks" element={<TracksPage />} />
-                TracksPage
-                <Route path="artists" element={<ArtistPage />} />
-                <Route path="new" element={<NewPage />} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<SignIn />} />
+            <Route path="*" element={<SignIn />} />
+            <Route element={<Authorization />}>
+              <Route path="/" element={<Layout />}>
+                <Route element={<MainPage />}>
+                  <Route index element={<AllPage />} />
+                  <Route path="tracks" element={<TracksPage />} />
+                  TracksPage
+                  <Route path="artists" element={<ArtistPage />} />
+                  <Route path="new" element={<NewPage />} />
+                </Route>
+
+                <Route path="/callback" element={<SpotifyAuth />} />
+                <Route path=":id" element={<ArtistDetailsPage />} />
+
+                <Route path="/search" element={<SearchPage />} />
               </Route>
-
-              <Route path="/callback" element={<SpotifyAuth />} />
-              <Route path=":id" element={<ArtistDetailsPage />} />
-
-              <Route path="/search" element={<SearchPage />} />
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 

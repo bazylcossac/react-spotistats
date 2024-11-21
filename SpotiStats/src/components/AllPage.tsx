@@ -1,18 +1,22 @@
 import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import AudioPlayer from "../pages/AudioPlayer";
+import {
+  TopArtistsType,
+  TopTracksType,
+  UserPlaylistsType,
+} from "../types/AllPageTypes";
 
 type TOutletContext = {
-  topArtists: Record<string, string | string[]>[] | null;
-  topTracks: Record<string, string | number>[] | null;
+  topArtists: TopArtistsType[] | null;
+  topTracks: TopTracksType[] | null;
   loading: boolean;
-  userPlaylists: Record<string, string | number>[] | null;
+  userPlaylists: UserPlaylistsType[] | null;
 };
 
 const AllPage = () => {
   const { topArtists, topTracks, loading, userPlaylists } =
     useOutletContext<TOutletContext>();
-  console.log(topArtists);
 
   console.log("all page");
   if (loading) {
@@ -74,7 +78,7 @@ const AllPage = () => {
   });
 
   /// PLAYLISTS
-  const playlistsElement = userPlaylists.map((playlist) => {
+  const playlistsElement = userPlaylists?.map((playlist) => {
     return (
       <div
         key={playlist.id}
