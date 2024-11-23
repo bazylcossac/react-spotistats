@@ -4,14 +4,17 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 const Header = ({ data }) => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ q: "", type: "artist" });
+  const [formData, setFormData] = useState({ artist: "", type: "artist" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    navigate(`/search?artist=$${value}`);
+    navigate(`/search?artist=${value}`);
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    return;
+  };
   return (
     <div>
       <header className="bg-black fixed top-0 w-full z-50">
@@ -30,27 +33,27 @@ const Header = ({ data }) => {
 
           <div className="">
             <div className="flex flex-row items-center">
-              <form>
+              <form onClick={handleSubmit} onKeyDown={handleChange}>
                 <input
                   type="text"
                   required
-                  name="q"
+                  name="artist"
                   className="bg-[#131313] placeholder-[#b5b5b5] font-bold rounded-lg px-4 py-4 text-sm outline-none"
                   placeholder="Search..."
                   onChange={handleChange}
-                  value={formData.q}
+                  value={formData.artist}
                 />
               </form>
             </div>
           </div>
 
-          <div className="flex flex-row items-center space-x-6">
+          <div className="flex flex-row items-center  space-x-6">
             <Link to="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6 text-[#8B8B8B]"
+                className="size-6 text-[#8B8B8B] bg-red-300"
               >
                 <path
                   fillRule="evenodd"
@@ -58,6 +61,7 @@ const Header = ({ data }) => {
                   clipRule="evenodd"
                 />
               </svg>
+              <div className="w-20 h-10 bg-red-300 absolute z-100 "></div>
             </Link>
 
             <div>

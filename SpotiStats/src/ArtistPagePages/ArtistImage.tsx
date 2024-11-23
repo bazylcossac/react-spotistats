@@ -5,32 +5,32 @@ import { spacedFollowers } from "../Tools/Tools";
 function ArtistImage({ artistData }) {
   return (
     <div className="relative mt-2">
-      <div className="relative z-20">
-        <div className="flex flex-col text-white p-2">
-          <h1 className="text-3xl font-bold mt-4 ">{artistData.name}</h1>
+      <Link to={artistData.uri}>
+        <div className="relative z-20">
+          <div className="flex flex-col text-white p-2">
+            <h1 className="text-3xl font-bold mt-4 ">{artistData.name}</h1>
+          </div>
         </div>
-      </div>
 
-      <div className="absolute inset-0 bg-black opacity-50 z-10 rounded-lg"></div>
+        <div className="absolute inset-0 bg-black opacity-50 z-10 rounded-lg"></div>
 
-      <div className="h-44">
-        <img
-          src={
-            artistData.images.length !== 0
-              ? artistData.images[0]?.url
-              : "./src/images/blackImage.webp"
-          }
-          alt={artistData.name}
-          className="absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg shadow-lg"
-        />
-      </div>
+        <div className="h-44">
+          <img
+            src={
+              artistData.images.length !== 0
+                ? artistData.images[0]?.url
+                : "./src/images/blackImage.webp"
+            }
+            alt={artistData.name}
+            className="absolute top-0 left-0 w-full h-full object-cover p z-0 rounded-lg shadow-lg"
+          />
+        </div>
 
-      <div className="flex flex-row items-center">
-        <p className="absolute bottom-3 z-10 someWhite font-bold p-2 text-xs">
-          Followers : {spacedFollowers(artistData.followers.total)}
-        </p>
-        <div className="absolute z-10 flex flex-row items-center bottom-0 right-0 -mr-4 text-white">
-          <Link to={artistData.uri}>
+        <div className="flex flex-row items-center">
+          <p className="absolute bottom-3 z-10 someWhite font-bold p-2 text-xs">
+            Followers : {spacedFollowers(artistData.followers.total)}
+          </p>
+          <div className="absolute z-10 flex flex-row items-center bottom-0 right-0 -mr-4 text-white">
             <svg
               className="scale-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +49,9 @@ function ArtistImage({ artistData }) {
                 <circle cx="440.1" cy="49.1" r="9.3" />
               </g>
             </svg>{" "}
-          </Link>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

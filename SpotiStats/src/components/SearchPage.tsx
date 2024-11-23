@@ -5,7 +5,7 @@ import { useAppDataStore } from "../store/AppDataStore";
 import { useDebounce } from "../Tools/Tools";
 import SearchPageResult from "./SearchPageResult";
 import Loading from "../Loading";
-import BlankPage from "../BlankPage";
+import BlankPage from "../BlankSearchPage";
 
 const SearchPage = () => {
   const navigate = useNavigate();

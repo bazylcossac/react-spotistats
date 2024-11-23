@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useUserData } from "../api/getUserData";
@@ -11,15 +11,20 @@ const Layout = () => {
   const token = useAppDataStore((state) => state.token);
   const { data, isLoading, isError } = useUserData(token);
 
-  if (isError) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("login"))) {
+      navigate("/login");
+    }
+    if (isError) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <>
       {isLoading && <Loading />}
-      {!isLoading && <Header data={data?.data} />}
-      {!isLoading && <Outlet context={data?.data} />}
+      {!isLoading && data && <Header data={data?.data} />}
+      {!isLoading && data && <Outlet context={data?.data} />}
     </>
   );
 };

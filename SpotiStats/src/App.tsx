@@ -14,10 +14,12 @@ import NewPage from "./components/NewPage";
 import SearchPage from "./components/SearchPage";
 import ArtistDetailsPage from "./components/ArtistDetailsPage";
 import ArtistsPage from "./components/ArtistsPage";
+import useRefreshToken from "./hooks/useRefreshToken";
 
 const queryClient = new QueryClient();
 
 function App() {
+  useRefreshToken();
   return (
     <div>
       <QueryClientProvider client={queryClient}>
@@ -25,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<SignIn />} />
             <Route path="/callback" element={<SignIn />} />
-            <Route path="*" element={<SignIn />} />
+            {/* <Route path="*" element={<SignIn />} /> */}
             <Route element={<Authorization />}>
               <Route path="/" element={<Layout />}>
                 <Route element={<MainPage />}>

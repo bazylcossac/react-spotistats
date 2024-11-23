@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { getCookieValue } from "../Tools/Tools";
 
 type TAppDataStore = {
   token: string | undefined;
@@ -11,7 +10,7 @@ type TAppDataStore = {
 };
 
 export const useAppDataStore = create<TAppDataStore>((set) => ({
-  token: getCookieValue("token"),
+  token: localStorage.getItem("access_token")!,
   term: "short_term",
   paramsValue: "",
   setToken: (token: string) => {

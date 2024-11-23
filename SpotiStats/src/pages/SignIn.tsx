@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSpotifyAuth } from "../api/SpotifyAuth";
 
 const SignIn = () => {
+  console.log("signin mounted");
   const navigate = useNavigate();
   const setToken = useAppDataStore((state) => state.setToken);
   const [searchParams] = useSearchParams();
@@ -13,9 +14,13 @@ const SignIn = () => {
 
   useEffect(() => {
     if (data && isSuccess) {
-      setToken(data);
+      console.log(data);
+
+      setToken(data.access_token);
       localStorage.setItem("login", JSON.stringify(true));
-      document.cookie = `token=${data}; max-age=3300; path=/`;
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+
       navigate("/");
     }
     if (isError) {

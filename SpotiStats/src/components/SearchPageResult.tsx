@@ -10,7 +10,7 @@ function SearchPageResult({ data, searchParams }) {
       <span className="flex flex-row text-[#525252] font-bold p-4">
         Results for:
         <p className="text-white ml-2 truncate">
-          {searchParams.get("artist").slice(1)}
+          {searchParams.get("artist")}
         </p>{" "}
       </span>
 
