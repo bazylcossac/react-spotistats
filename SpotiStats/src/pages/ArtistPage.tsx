@@ -2,11 +2,11 @@ import React, { memo } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import TracksElement from "../ArtistPagePages/TracksElement";
-import TopElements from "../ArtistPagePages/TopElement";
-import ArtistImage from "../ArtistPagePages/ArtistImage";
-import AlbumsElement from "../ArtistPagePages/AlbumsElement";
-import RelatedArtistsElement from "../ArtistPagePages/RelatedArtistsElement";
+import TracksElement from "../ArtistElements/TracksElement";
+import TopElements from "../ArtistElements/TopElement";
+import ArtistImage from "../ArtistElements/ArtistImage";
+import AlbumsElement from "../ArtistElements/AlbumsElement";
+import RelatedArtistsElement from "../ArtistElements/RelatedArtistsElement";
 
 type TArtistPage = {
   results: any;

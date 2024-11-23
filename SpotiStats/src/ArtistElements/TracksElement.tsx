@@ -25,7 +25,7 @@ function TracksElement({ topTracks }) {
             </Link>
             <Link to={`/${track.album.artists[0].id}`}>
               {" "}
-              <div className="ml-4  w-52 h-full element">
+              <div className="ml-2 w-52 h-full element">
                 <p className="someWhite font-bold text-md ml-2">{track.name}</p>
                 <p className="someWhite text-sm ml-2">
                   {track.artists.map((artist) => `${artist.name} `)}

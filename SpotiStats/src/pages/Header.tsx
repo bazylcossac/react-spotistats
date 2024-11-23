@@ -53,7 +53,7 @@ const Header = ({ data }) => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6 text-[#8B8B8B] bg-red-300"
+                className="size-6 text-[#8B8B8B]"
               >
                 <path
                   fillRule="evenodd"
@@ -61,7 +61,6 @@ const Header = ({ data }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              <div className="w-20 h-10 bg-red-300 absolute z-100 "></div>
             </Link>
 
             <div>

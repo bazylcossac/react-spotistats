@@ -5,13 +5,15 @@ import { useQueries } from "@tanstack/react-query";
 //   endpoint: "top-tracks" | "albums" | "related-artists"
 // }
 
+type AllowedEndpoints = "top-tracks" | "albums" | "related-artists" | "";
+type AllowedEndpointsArray = AllowedEndpoints[];
+
 const getArtistData = async (
   id: string | undefined,
   endpoint: string,
   token: string
 ) => {
-  if (!id) return;
-  /// returns endpoint data of artist.
+  if (!token) return;
 
   /// endpoints: 'top-tracks' 'albums', 'related-artists' or "" to get data about artist like image, name etc.
 
@@ -32,7 +34,7 @@ const getArtistData = async (
 
 export function useArtistData(
   id: string | undefined,
-  endpoints: string[],
+  endpoints: AllowedEndpointsArray,
   token: string
 ) {
   const results = useQueries({

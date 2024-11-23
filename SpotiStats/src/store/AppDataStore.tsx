@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type TAppDataStore = {
-  token: string | undefined;
+  token: string | null;
   term: string;
   paramsValue: string;
   setToken: (token: string) => void;
@@ -10,7 +10,7 @@ type TAppDataStore = {
 };
 
 export const useAppDataStore = create<TAppDataStore>((set) => ({
-  token: localStorage.getItem("access_token")!,
+  token: localStorage.getItem("access_token"),
   term: "short_term",
   paramsValue: "",
   setToken: (token: string) => {
