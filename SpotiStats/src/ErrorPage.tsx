@@ -1,11 +1,11 @@
 import React from "react";
 
-function BlankPage() {
+function BlankSearchPage({ text }) {
   return (
     <div className="someWhite font-bold text-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      Search for artists
+      {text}
     </div>
   );
 }
 
-export default BlankPage;
+export default BlankSearchPage;

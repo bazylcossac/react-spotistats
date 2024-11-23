@@ -28,6 +28,7 @@ export function useUserTopData(
       queryKey: ["user-top-data", genre, term],
       queryFn: () => getUsersTopData(genre, limit, term, token),
       staleTime: 1000 * 60 * 60,
+      refetchOnWindowFocus: true,
       retry: 2,
     })),
   });

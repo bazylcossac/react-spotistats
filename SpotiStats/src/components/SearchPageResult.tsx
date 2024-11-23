@@ -26,7 +26,7 @@ function SearchPageResult({ data, searchParams }) {
               className="rounded-full size-32"
             />
             <p className="text-white font-bold text-xl mt-2">
-              {firstArtist?.name}
+              {firstArtist?.name ? firstArtist.name : "None"}
             </p>
           </div>
         </Link>
@@ -40,20 +40,24 @@ function SearchPageResult({ data, searchParams }) {
               >
                 {genre ? genre : "No genres"}
               </div>
-            ))}
+            ))}{" "}
+            |{" "}
+            <div className="text-xs font-bold text-[#313131] text-center bg-[#8B8B8B] px-2 py-1 rounded-lg shadow-lg">
+              none
+            </div>
           </span>
           <div className="bg-[#272727] text-center ml-4 mt-4 py-2 rounded-lg shadow-lg">
             <p className="someWhite font-bold">
-              {firstArtist?.type.toUpperCase()}
+              {firstArtist?.type.toUpperCase() || "?"}
             </p>
           </div>
           <div className="bg-[#272727] ml-4 mt-4 rounded-lg py-2 px-2 text-center shadow-lg">
             <p className="someWhite font-bold text-md">
-              Followers: {spacedFollowers(firstArtist?.followers.total)}
+              Followers: {spacedFollowers(firstArtist?.followers.total) || 0}
             </p>
           </div>
 
-          <Link to={firstArtist?.uri}>
+          <Link to={firstArtist?.uri ? firstArtist?.uri : "/"}>
             <div className="bg-[#272727] ml-4 mt-4 flex justify-center rounded-lg shadow-lg">
               <svg
                 className="scale-75"

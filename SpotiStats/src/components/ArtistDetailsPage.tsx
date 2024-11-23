@@ -4,10 +4,11 @@ import { useArtistData } from "../api/getArtistData";
 import ArtistPage from "../pages/ArtistPage";
 import Loading from "../Loading";
 import { useAppDataStore } from "../store/AppDataStore";
+
+import ErrorPage from "../ErrorPage";
 const ArtistDetailsPage = () => {
   const token = useAppDataStore((state) => state.token)!;
 
-  // const token = localStorage.getItem("access_token");
   let { id } = useParams();
   const results = useArtistData(
     id,
@@ -15,13 +16,15 @@ const ArtistDetailsPage = () => {
     token
   );
   const isLoading = results.some((result) => result.isLoading);
+  const isError = results.some((result) => result.isError);
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <div>
-      <ArtistPage results={results} />
+      {isError && <ErrorPage text="Failed to fetch user" />}
+      {!isError && <ArtistPage results={results} />}
     </div>
   );
 };

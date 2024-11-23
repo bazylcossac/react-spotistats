@@ -13,13 +13,10 @@ type TArtistPage = {
 };
 
 const ArtistPage = ({ results }: TArtistPage) => {
-  if (!results) return;
-
   const navigate = useNavigate();
   const artistData = results[3]?.data.data;
   const topTracks = results[0]?.data.data.tracks;
   const topAlbums = results[1]?.data.data.items;
-  console.log(topAlbums);
 
   const relatedArtists = results[2]?.data.data.artists;
 

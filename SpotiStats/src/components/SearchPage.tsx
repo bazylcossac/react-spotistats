@@ -5,7 +5,7 @@ import { useAppDataStore } from "../store/AppDataStore";
 import { useDebounce } from "../Tools/Tools";
 import SearchPageResult from "./SearchPageResult";
 import Loading from "../Loading";
-import BlankPage from "../BlankSearchPage";
+import BlankPage from "../ErrorPage";
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ const SearchPage = () => {
   const token = useAppDataStore((state) => state.token);
   const [searchParams, setSearchParams] = useSearchParams();
   const params = searchParams.get("artist").slice(1);
-  
 
   const { data, isLoading, isError } = useSpotifySearchData(
     useDebounce(params, 250),

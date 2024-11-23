@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const spacedFollowers = (followers: number) => {
+  if (!followers) return;
   const str = followers.toString();
   const reversed = str.split("").reverse().join("");
   const spacedReversed = reversed.replace(/(.{3})/g, "$1 ");

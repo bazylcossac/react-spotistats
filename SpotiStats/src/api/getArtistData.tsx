@@ -14,6 +14,7 @@ const getArtistData = async (
   token: string
 ) => {
   if (!token) return;
+  if (!id) return;
 
   /// endpoints: 'top-tracks' 'albums', 'related-artists' or "" to get data about artist like image, name etc.
 
@@ -42,6 +43,7 @@ export function useArtistData(
       queryKey: ["user-top-data", id, endpoint, token],
       queryFn: () => getArtistData(id, endpoint, token),
       staleTime: 1000 * 60 * 60,
+
       retry: 2,
       enabled: !!id,
     })),
