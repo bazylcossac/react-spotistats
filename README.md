@@ -31,7 +31,7 @@ I’m aware that **React** may not be the best choice for building mobile applic
 
 ## Demo 🎥
 
-[![Watch the demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtube.com/shorts/rYEuFm6o-A8?feature=share)
+[![Watch the demo]([https://img.youtube.com/vi/VIDEO_ID/0.jpg](https://static.wirtualnemedia.pl/media/top/ytlogo-main1.jpg))](https://youtube.com/shorts/rYEuFm6o-A8?feature=share)
 
 
 ---
