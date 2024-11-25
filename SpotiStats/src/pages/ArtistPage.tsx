@@ -1,6 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
-
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import TracksElement from "../ArtistElements/TracksElement";
 import TopElements from "../ArtistElements/TopElement";
@@ -37,7 +35,7 @@ const ArtistPage = ({ results }: TArtistPage) => {
 
   useEffect(() => {
     setSavedTracksIds(topTracks?.map((track) => track.id));
-  }, [topTracks]);
+  }, []);
 
   if (topTracksLoading) {
     return <Loading />;

@@ -9,7 +9,6 @@ async function getCheckSavedTracks(ids: string[]) {
   if (!ids) {
     throw new Error("No ids provided");
   }
-
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/me/tracks/contains?ids=${ids.join(",")}`,

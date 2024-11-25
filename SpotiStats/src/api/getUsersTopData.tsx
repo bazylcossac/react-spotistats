@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useQueries } from "@tanstack/react-query";
 const getUsersTopData = async (genre, limit, term, token) => {
-  console.log("fetching");
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/me/top/${genre}?limit=${limit}&time_range=${term}`,

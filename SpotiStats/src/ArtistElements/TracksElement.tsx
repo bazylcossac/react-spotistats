@@ -2,12 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AudioPlayer from "../pages/AudioPlayer";
 import addTrackToSpotifyFavourite from "../api/addTrackToFavourite";
-import { toast } from "react-hot-toast";
 
 function TracksElement({ topTracks }) {
-  console.log(topTracks);
   return topTracks?.map((track, index) => {
-    console.log(track);
     return (
       <div
         key={track?.track.id}

@@ -10,11 +10,8 @@ import { useChechSavedTracks } from "../api/getCheckSavedTracks";
 const AllPage = () => {
   const { results, playlists, playlistLoading } =
     useOutletContext<TOutletContext>();
-
-  // const [savedTracksBooleans, setSavedTracksBooleans] = useState<
-  //   boolean[] | null
-  // >(null);
   const [savedTracksIds, setSavedTracksIds] = useState([]);
+
   const { data } = useChechSavedTracks(savedTracksIds);
 
   const topArtists = results[0]?.data?.data.items;

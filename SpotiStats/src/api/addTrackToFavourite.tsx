@@ -6,7 +6,7 @@ async function addTrackToSpotifyFavourite(id: string[]) {
   try {
     const response = await axios.put(
       `https://api.spotify.com/v1/me/tracks?ids=${id.join(",")}`,
-      null, // Brak body w PUT
+      null,
       {
         headers: {
           Authorization: `Bearer ${token}`,

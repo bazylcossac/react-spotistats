@@ -1,8 +1,5 @@
 import { clientId, clientSecret } from "../apiKeys";
 
-/// token sie refreshuje po nowym zmoutnowaniu app ale trzeba obsluzyc bledy:
-/// kiedy token traci waznosc po godzinie, nalezy zrefhresowac token
-
 export async function getRefreshToken() {
   const OldRefreshToken = localStorage.getItem("refresh_token");
 
@@ -30,7 +27,4 @@ export async function getRefreshToken() {
   const response = await body.json();
 
   localStorage.setItem("access_token", response.access_token);
-  //   if (response.refresh_token) {
-  //     localStorage.setItem("refresh_token", response.refresh_token);
-  //   }
 }

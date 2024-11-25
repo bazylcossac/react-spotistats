@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useUserData } from "../api/getUserData";
-import { getCookieValue } from "../Tools/Tools";
 import Loading from "../Loading";
 import { useAppDataStore } from "../store/AppDataStore";
 
