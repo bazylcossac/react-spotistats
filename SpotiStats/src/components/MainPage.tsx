@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Outlet } from "react-router-dom";
-
 import MainPageNav from "./MainPageNav";
 import { useUserTopData } from "../api/getUsersTopData";
 import { useUserPlaylist } from "../api/getUserPlaylists";
@@ -11,13 +9,12 @@ import { useAppDataStore } from "../store/AppDataStore";
 const MainPage = () => {
   const token = useAppDataStore((state) => state.token);
   const term = useAppDataStore((state) => state.term);
-  console.log(term);
   const setTerm = useAppDataStore((state) => state.setTerm);
   const results = useUserTopData(["artists", "tracks"], 9, term, token);
   const { userPlaylists, playlistLoading, isError } = useUserPlaylist(token);
   const playlists = userPlaylists?.data.items;
   const handleTermChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     setTerm(value);
   };
 
@@ -30,7 +27,7 @@ const MainPage = () => {
   return (
     <div className="mt-16">
       <MainPageNav
-        handleTermChange={() => handleTermChange(event)}
+        handleTermChange={(event) => handleTermChange(event)}
         term={term}
       />
       <Outlet context={contextValues} />

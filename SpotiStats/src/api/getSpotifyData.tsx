@@ -18,7 +18,7 @@ async function getSpotifyData(
   }
   try {
     const response = await axios.get(
-      `https://api.spotify.com/v1/search?q=${params}&type=artist&limit=${limit}`,
+      `https://api.spotify.com/v1/search?q=${params}&type=album%2Ctrack%2Cartist&market=PL&limit=${limit}`,
       {
         headers: {
           Authorization: `Bearer ${token} `,

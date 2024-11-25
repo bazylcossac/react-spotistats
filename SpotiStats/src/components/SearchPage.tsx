@@ -1,26 +1,28 @@
 import React from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useSpotifySearchData } from "../api/getSpotifyData";
 import { useAppDataStore } from "../store/AppDataStore";
 import { useDebounce } from "../Tools/Tools";
 import SearchPageResult from "./SearchPageResult";
 import Loading from "../Loading";
-import BlankPage from "../ErrorPage";
+
+import BlankSearchPage from "../ErrorPage";
 
 const SearchPage = () => {
-  const navigate = useNavigate();
-
   const token = useAppDataStore((state) => state.token);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const params = searchParams.get("artist").slice(1);
+  const [searchParams] = useSearchParams();
+  const params = searchParams.get("artist")!.slice(1);
 
   const { data, isLoading, isError } = useSpotifySearchData(
     useDebounce(params, 250),
-    1,
+    9,
     token
   );
   if (!params) {
-    return <BlankPage />;
+    return <BlankSearchPage text={""} />;
+  }
+  if (isError) {
+    return <BlankSearchPage text={"error"} />;
   }
   if (isLoading) {
     return <Loading />;

@@ -8,7 +8,7 @@ const Autorization = () => {
     if (!userAuthzation || userAuthzation === null) {
       navigate("/login");
     }
-  }, []);
+  }, [userAuthzation]);
 
   return <Outlet />;
 };

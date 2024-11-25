@@ -10,6 +10,7 @@ const ArtistDetailsPage = () => {
   const token = useAppDataStore((state) => state.token)!;
 
   let { id } = useParams();
+
   const results = useArtistData(
     id,
     ["top-tracks", "albums", "related-artists", ""],

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const Header = ({ data }) => {
@@ -15,6 +16,7 @@ const Header = ({ data }) => {
     event.preventDefault();
     return;
   };
+
   return (
     <div>
       <header className="bg-black fixed top-0 w-full z-50">
@@ -92,6 +94,7 @@ const Header = ({ data }) => {
             )}
           </div>
         </nav>
+        
       </header>
     </div>
   );

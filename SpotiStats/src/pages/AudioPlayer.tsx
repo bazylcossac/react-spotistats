@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 const AudioPlayer = ({ source }) => {
   const playIcon = (
@@ -6,7 +6,7 @@ const AudioPlayer = ({ source }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="size-6 text-[#8B8B8B]"
+      className="size-6 text-[#cdcdcd]"
     >
       <path
         fillRule="evenodd"
@@ -21,7 +21,7 @@ const AudioPlayer = ({ source }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="size-6 text-[#8B8B8B]"
+      className="size-6 text-[#cdcdcd]"
     >
       <path
         fillRule="evenodd"
@@ -35,7 +35,8 @@ const AudioPlayer = ({ source }) => {
   const [icon, setIcon] = useState(playIcon);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const handlePlayingAudio = () => {
+  const handlePlayingAudio = useCallback(() => {
+    console.log("playing audio handle");
     if (isPlaying) {
       setIsPlaying(false);
       audioRef.current?.pause();
@@ -45,7 +46,7 @@ const AudioPlayer = ({ source }) => {
       audioRef.current?.play();
       setIcon(pauseIcon);
     }
-  };
+  }, [isPlaying]);
 
   return (
     <div>

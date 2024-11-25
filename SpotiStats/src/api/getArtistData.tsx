@@ -1,10 +1,6 @@
 import axios from "axios";
 import { useQueries } from "@tanstack/react-query";
 
-// type TEndpoint = {
-//   endpoint: "top-tracks" | "albums" | "related-artists"
-// }
-
 type AllowedEndpoints = "top-tracks" | "albums" | "related-artists" | "";
 type AllowedEndpointsArray = AllowedEndpoints[];
 
@@ -43,7 +39,6 @@ export function useArtistData(
       queryKey: ["user-top-data", id, endpoint, token],
       queryFn: () => getArtistData(id, endpoint, token),
       staleTime: 1000 * 60 * 60,
-
       retry: 2,
       enabled: !!id,
     })),

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 import MainPage from "./components/MainPage";
 import Layout from "./pages/Layout";
@@ -33,7 +34,7 @@ function App() {
                 <Route element={<MainPage />}>
                   <Route index element={<AllPage />} />
                   <Route path="tracks" element={<TracksPage />} />
-                  TracksPage
+
                   <Route path="artists" element={<ArtistsPage />} />
                   <Route path="new" element={<NewPage />} />
                 </Route>
@@ -45,6 +46,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Toaster />
       </QueryClientProvider>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { getRefreshToken } from "../api/getRefreshToken";
+import { clearCookies } from "../Tools/Tools";
 
 function useRefreshToken() {
   useEffect(() => {

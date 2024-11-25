@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -7,13 +7,17 @@ import TopElements from "../ArtistElements/TopElement";
 import ArtistImage from "../ArtistElements/ArtistImage";
 import AlbumsElement from "../ArtistElements/AlbumsElement";
 import RelatedArtistsElement from "../ArtistElements/RelatedArtistsElement";
+import { useChechSavedTracks } from "../api/getCheckSavedTracks";
+import Loading from "../Loading";
 
 type TArtistPage = {
   results: any;
 };
 
 const ArtistPage = ({ results }: TArtistPage) => {
-  const navigate = useNavigate();
+  const [savedTracksIds, setSavedTracksIds] = useState([]);
+  const [savedTracks, setSavedTracks] = useState([]);
+  const { data } = useChechSavedTracks(savedTracksIds);
   const artistData = results[3]?.data.data;
   const topTracks = results[0]?.data.data.tracks;
   const topAlbums = results[1]?.data.data.items;
@@ -23,7 +27,21 @@ const ArtistPage = ({ results }: TArtistPage) => {
   const filteredAlbums = topAlbums.filter(
     (album) => album.album_type === "album"
   );
+  const topTracksWithSavedValuie = topTracks?.map((track, index) => ({
+    track,
+    isSaved: data?.data[index],
+  }));
+  const topTracksLoading = topTracksWithSavedValuie?.some(
+    (track) => track.isSaved === undefined
+  );
 
+  useEffect(() => {
+    setSavedTracksIds(topTracks?.map((track) => track.id));
+  }, [topTracks]);
+
+  if (topTracksLoading) {
+    return <Loading />;
+  }
   return (
     <div className="mx-4 mt-20 flex flex-col">
       <TopElements artistData={artistData} />
@@ -38,7 +56,7 @@ const ArtistPage = ({ results }: TArtistPage) => {
         ""
       )}
       <div className="tracks-container -mx-2 mt-4 element">
-        <TracksElement topTracks={topTracks} />
+        <TracksElement topTracks={topTracksWithSavedValuie} />
       </div>
 
       {relatedArtists.length ? (
@@ -53,4 +71,4 @@ const ArtistPage = ({ results }: TArtistPage) => {
   );
 };
 
-export default memo(ArtistPage);
+export default ArtistPage;

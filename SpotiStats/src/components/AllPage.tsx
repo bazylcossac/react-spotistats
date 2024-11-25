@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import Loading from "../Loading";
 import { TOutletContext } from "../types/OutletContextType";
 import TracksElement from "../ArtistElements/TracksElement";
 import RelatedArtistsElement from "../ArtistElements/RelatedArtistsElement";
 import PlaylistsElement from "../ArtistElements/PlaylistsElement";
+import { useChechSavedTracks } from "../api/getCheckSavedTracks";
 
 const AllPage = () => {
   const { results, playlists, playlistLoading } =
     useOutletContext<TOutletContext>();
+
+  // const [savedTracksBooleans, setSavedTracksBooleans] = useState<
+  //   boolean[] | null
+  // >(null);
+  const [savedTracksIds, setSavedTracksIds] = useState([]);
+  const { data } = useChechSavedTracks(savedTracksIds);
+
   const topArtists = results[0]?.data?.data.items;
   const topTracks = results[1]?.data?.data.items;
   const isLoading = results.some((result) => result.isLoading);
 
-  if (isLoading || playlistLoading) {
+  const topTracksWithSavedValuie = topTracks?.map((track, index) => ({
+    track,
+    isSaved: data?.data[index],
+  }));
+
+  const topTracksLoading = topTracksWithSavedValuie?.some(
+    (track) => track.isSaved === undefined
+  );
+  useEffect(() => {
+    setSavedTracksIds(topTracks?.map((track) => track.id));
+  }, [topTracks]);
+
+  if (isLoading || playlistLoading || topTracksLoading) {
     return <Loading />;
   }
 
@@ -34,7 +54,7 @@ const AllPage = () => {
       </div>
 
       <div className="tracks-container element">
-        <TracksElement topTracks={topTracks} />
+        <TracksElement topTracks={topTracksWithSavedValuie} />
       </div>
 
       <div className="flex flex-row justify-between items-center px-4 mt-4 ">
