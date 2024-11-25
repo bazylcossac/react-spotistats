@@ -29,10 +29,9 @@ I’m aware that **React** may not be the best choice for building mobile applic
 
 ---
 
-## Screenshots 📸
-![Zrzut ekranu 2024-11-25 o 21 31 59](https://github.com/user-attachments/assets/553242b0-9613-4eb4-9929-811e11c227f9)
+## Demo 🎥
 
-![Zrzut ekranu 2024-11-25 o 21 32 25](https://github.com/user-attachments/assets/e4e480e2-e016-4704-bd62-6e801d205511)
+[![Watch the demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtube.com/shorts/rYEuFm6o-A8?feature=share)
 
 
 ---
