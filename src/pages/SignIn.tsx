@@ -41,7 +41,7 @@ const SignIn = () => {
 
       <Link
         className="p-3 bg-[#2c2c2c] rounded-2xl"
-        to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http://localhost:3001/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
+        to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http:spoti-stats-3u3r-dusky.vercel.app/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
 "
       >
         Sign In
