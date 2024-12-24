@@ -14,7 +14,6 @@ function TracksElement({ topTracks }) {
           <div className="flex flex-row items-center">
             <p className="text-white font-bold">{index + 1}</p>
             <div className="relative">
-              <div className="absolute inset-0 bg-black opacity-50 z-100 rounded-lg ml-4"></div>
               <img
                 src={
                   track.track.album?.images
@@ -26,19 +25,15 @@ function TracksElement({ topTracks }) {
                 alt={track.track.name}
                 className="rounded-lg shadow-md ml-4"
               />
-
-              <div className="absolute inset-0 flex items-center justify-center ml-3">
-                <AudioPlayer source={track.track.preview_url} />
-              </div>
             </div>
 
             <Link to={`/${track.track.album.artists[0].id}`}>
               {" "}
-              <div className="ml-2 w-52 h-full element">
+              <div className="ml-2 w-44 h-full element overflow-auto">
                 <p className="someWhite font-bold text-md ml-2">
                   {track.track.name}
                 </p>
-                <p className="someWhite text-sm ml-2">
+                <p className="someWhite text-sm ml-2 ">
                   {track.track.artists.map((artist) => `${artist.name} `)}
                 </p>
               </div>

@@ -16,11 +16,11 @@ const ArtistPage = ({ results }: TArtistPage) => {
   const [savedTracksIds, setSavedTracksIds] = useState([]);
   const [savedTracks, setSavedTracks] = useState([]);
   const { data } = useChechSavedTracks(savedTracksIds);
-  const artistData = results[3]?.data.data;
+  const artistData = results[2]?.data.data;
   const topTracks = results[0]?.data.data.tracks;
   const topAlbums = results[1]?.data.data.items;
 
-  const relatedArtists = results[2]?.data.data.artists;
+  // const relatedArtists = results[2]?.data.data.artists;
 
   const filteredAlbums = topAlbums.filter(
     (album) => album.album_type === "album"
@@ -37,33 +37,27 @@ const ArtistPage = ({ results }: TArtistPage) => {
     setSavedTracksIds(topTracks?.map((track) => track.id));
   }, []);
 
-  if (topTracksLoading) {
+  if (topTracksLoading || !artistData || !topTracks || !topAlbums) {
     return <Loading />;
   }
   return (
     <div className="mx-4 mt-20 flex flex-col">
       <TopElements artistData={artistData} />
+
       {/* ARTIST */}
       <ArtistImage artistData={artistData} />
+
       {/* ALBUMS */}
       <AlbumsElement filteredAlbums={filteredAlbums} />
+
       {/* TRACKS ELEMENS */}
       {topTracks.length ? (
         <p className="someWhite font-bold mt-2">Tracks</p>
       ) : (
         ""
       )}
-      <div className="tracks-container -mx-2 mt-4 element">
+      <div className="tracks-container -mx-2 my-4 element">
         <TracksElement topTracks={topTracksWithSavedValuie} />
-      </div>
-
-      {relatedArtists.length ? (
-        <p className="someWhite font-bold mt-4">Check also</p>
-      ) : (
-        ""
-      )}
-      <div className="artist-container my-4 element">
-        <RelatedArtistsElement relatedArtists={relatedArtists} />
       </div>
     </div>
   );

@@ -16,13 +16,14 @@ const getArtistData = async (
 
   try {
     const response = await axios.get(
-      `https://api.spotify.com/v1/artists/${id}/${endpoint}`,
+      `https://api.spotify.com/v1/artists/${id}/${endpoint}?limit=9`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
+
     return response;
   } catch (err) {
     console.error(err);

@@ -36,7 +36,6 @@ const AudioPlayer = ({ source }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayingAudio = useCallback(() => {
-    console.log("playing audio handle");
     if (isPlaying) {
       setIsPlaying(false);
       audioRef.current?.pause();

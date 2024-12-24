@@ -11,13 +11,11 @@ const ArtistDetailsPage = () => {
 
   let { id } = useParams();
 
-  const results = useArtistData(
-    id,
-    ["top-tracks", "albums", "related-artists", ""],
-    token
-  );
+  const results = useArtistData(id, ["top-tracks", "albums", ""], token);
+  console.log(results);
   const isLoading = results.some((result) => result.isLoading);
   const isError = results.some((result) => result.isError);
+
   if (isLoading) {
     return <Loading />;
   }
