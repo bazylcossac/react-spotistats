@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 import TracksElement from "../ArtistElements/TracksElement";
 import TopElements from "../ArtistElements/TopElement";
@@ -14,8 +14,9 @@ type TArtistPage = {
 
 const ArtistPage = ({ results }: TArtistPage) => {
   const [savedTracksIds, setSavedTracksIds] = useState([]);
-  const [savedTracks, setSavedTracks] = useState([]);
+
   const { data } = useChechSavedTracks(savedTracksIds);
+
   const artistData = results[2]?.data.data;
   const topTracks = results[0]?.data.data.tracks;
   const topAlbums = results[1]?.data.data.items;
@@ -37,7 +38,7 @@ const ArtistPage = ({ results }: TArtistPage) => {
     setSavedTracksIds(topTracks?.map((track) => track.id));
   }, []);
 
-  if (topTracksLoading || !artistData || !topTracks || !topAlbums) {
+  if (topTracksLoading || !artistData || !topTracks || !topAlbums || !data) {
     return <Loading />;
   }
   return (
