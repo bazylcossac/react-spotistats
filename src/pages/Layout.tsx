@@ -8,10 +8,10 @@ import { useAppDataStore } from "../store/AppDataStore";
 const Layout = () => {
   const navigate = useNavigate();
   const token = useAppDataStore((state) => state.token);
-  const { data, isLoading, isError } = useUserData(token);
+  const { data, isLoading, isError } = useUserData(token!);
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("login"))) {
+    if (!JSON.parse(localStorage.getItem("login")!)) {
       navigate("/login");
     }
     if (isError) {
