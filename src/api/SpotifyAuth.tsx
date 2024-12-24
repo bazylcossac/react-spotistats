@@ -11,7 +11,7 @@ const fetchToken = async (
 
   params.append("grant_type", "authorization_code");
   params.append("code", code);
-  params.append("redirect_uri", "http://localhost:3001/callback");
+  params.append("redirect_uri", "https://spoti-stats-mu.vercel.app/callback");
   params.append("client_id", clientId);
   params.append("client_secret", clientSecret);
 
