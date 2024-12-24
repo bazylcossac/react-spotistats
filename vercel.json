@@ -1,17 +1,25 @@
 {
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "src": "vite.config.js",
+      "use": "@vercel/vite"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/dist/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/_next/static/chunks/.*\\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
     }
   ]
 }
