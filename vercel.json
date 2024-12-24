@@ -5,12 +5,6 @@
       "use": "@vercel/vite"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
-    }
-  ],
   "headers": [
     {
       "source": "/_next/static/chunks/.*\\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg)",
