@@ -16,6 +16,7 @@ import SearchPage from "./components/SearchPage";
 import ArtistDetailsPage from "./components/ArtistDetailsPage";
 import ArtistsPage from "./components/ArtistsPage";
 import useRefreshToken from "./hooks/useRefreshToken";
+import Callback from "./pages/Callback";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<SignIn />} />
-            <Route path="/callback" element={<SignIn />} />
+            <Route path="/callback" element={<Callback />} />
             {/* <Route path="*" element={<SignIn />} /> */}
             <Route element={<Authorization />}>
               <Route path="/" element={<Layout />}>
