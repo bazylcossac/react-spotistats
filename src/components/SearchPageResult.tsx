@@ -10,7 +10,7 @@ function SearchPageResult({ data, searchParams }) {
   const filteredFirstArtistsTracks = SearchedTracks?.items.filter(
     (track) => track.artists[0].name === firstArtistName
   );
-  console.log(filteredFirstArtistsTracks);
+
   return (
     <div className="mt-16">
       <span className="flex flex-row text-[#525252] font-bold p-4">

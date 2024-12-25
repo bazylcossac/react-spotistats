@@ -17,8 +17,6 @@ const Callback = () => {
     }
 
     if (data && isSuccess) {
-      console.log("Authorization successful:", data);
-
       setToken(data.access_token);
       localStorage.setItem("login", JSON.stringify(true));
       localStorage.setItem("access_token", data.access_token);

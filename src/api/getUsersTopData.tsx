@@ -12,7 +12,7 @@ const getUsersTopData = async (genre, limit, term, token) => {
     );
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 

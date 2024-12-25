@@ -12,7 +12,6 @@ async function getSpotifyData(
   limit: number | undefined = 10,
   token: string
 ) {
-  console.log("fetching");
   if (!params) {
     return null;
   }
