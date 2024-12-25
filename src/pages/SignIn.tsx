@@ -12,6 +12,11 @@ const SignIn = () => {
   const { data, isSuccess, isError } = useSpotifyAuth(code);
 
   useEffect(() => {
+    if (!code) {
+      navigate("/login");
+      return;
+    }
+
     if (data && isSuccess) {
       console.log(data);
 
@@ -25,7 +30,7 @@ const SignIn = () => {
     if (isError) {
       navigate("/login");
     }
-  }, [code, data, isSuccess, navigate]);
+  }, [code, data, isSuccess, isError, navigate, setToken]);
 
   return (
     <>
