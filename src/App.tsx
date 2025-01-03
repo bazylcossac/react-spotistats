@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<SignIn />} />
             <Route path="/callback" element={<Callback />} />
-            {/* <Route path="*" element={<SignIn />} /> */}
+
             <Route element={<Authorization />}>
               <Route path="/" element={<Layout />}>
                 <Route element={<MainPage />}>

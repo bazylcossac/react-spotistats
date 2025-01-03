@@ -6,7 +6,7 @@ function AlbumsElement({ filteredAlbums }) {
       <p className="someWhite font-bold mt-2">
         {filteredAlbums.length ? "Albums" : ""}
       </p>
-      <div className="artist-container my-4 element">
+      <div className="artist-container my-4 py-2">
         {filteredAlbums?.map((track) => (
           <div key={track.id} className="artist text-xs text-center shadow-xl">
             <img

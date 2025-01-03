@@ -19,7 +19,7 @@ const Header = ({ data }) => {
 
   return (
     <div>
-      <header className="bg-black fixed top-0 w-full z-50">
+      <header className="bg-black fixed top-0 w-[442px] z-50 ">
         <nav className="flex justify-between items-center text-white p-2">
           <NavLink className="" to="/">
             <svg
@@ -94,7 +94,6 @@ const Header = ({ data }) => {
             )}
           </div>
         </nav>
-        
       </header>
     </div>
   );

@@ -2,56 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-.someWhite{
-    color: #c3c2c2
+.someWhite {
+  color: #c3c2c2;
 }
-.someGray{
-    color: #9F9F9F
+.someGray {
+  color: #9f9f9f;
 }
 
 .artist-container {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-  
-  .artist {
-    flex-shrink: 0;
-    margin-right:15px;
-  }
-  
-  .artist img {
-    width: 87px;
-    height: 87px;
-  }
-
-.tracks-container{
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
-    white-space: nowrap;
-    height: 300px;
-    margin-top:5px;
-    overflow-x: hidden;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
-
-
-.track{
-    flex-shrink: 0;
+.artist {
+  flex-shrink: 0;
+  margin-right: 15px;
 }
 
-.track img{
-    width:70px
-}
-.background{
-  background-color: #1D1D1D;
+.artist img {
+  width: 87px;
+  height: 87px;
 }
 
-.element {
-  overflow: scroll; /* lub auto, w zależności od potrzeb */
+.tracks-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 300px;
+  margin-top: 5px;
+  overflow-x: hidden;
 }
 
-.element::-webkit-scrollbar {
-  display: none; /* Ukrywa scrollbar */
+.track {
+  flex-shrink: 0;
+}
+
+.track img {
+  width: 70px;
+}
+.background {
+  background-color: #0a0a0a;
+}
+::-webkit-scrollbar {
+  width: 3px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #212121;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

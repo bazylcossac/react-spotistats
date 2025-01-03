@@ -27,9 +27,6 @@ const AllPage = () => {
   const topTracksLoading = topTracksWithSavedValuie?.some(
     (track) => track.isSaved === undefined
   );
-  // useEffect(() => {
-  //   setSavedTracksIds(topTracks?.map((track) => track.id));
-  // }, [topTracks]);
 
   if (isLoading || playlistLoading || topTracksLoading) {
     return <Loading />;
@@ -39,16 +36,16 @@ const AllPage = () => {
     <div className="flex flex-col">
       <div className="flex flex-row justify-between items-center px-4 mt-4 ">
         <p className="someWhite font-bold text-lg">Top artists</p>
-        <p className="someGray text-sm font-bold">See more</p>
+        <p className="someGray text-sm font-bold cursor-pointer">See more</p>
       </div>
 
-      <div className="artist-container m-4 element">
+      <div className="artist-container m-4 overflow-x-scroll py-2">
         <RelatedArtistsElement relatedArtists={topArtists} />
       </div>
 
       <div className="flex flex-row justify-between items-center px-4 mt-4 ">
         <p className="someWhite font-bold text-lg">Top tracks</p>
-        <p className="someGray text-sm font-bold">See more</p>
+        <p className="someGray text-sm font-bold cursor-pointer">See more</p>
       </div>
 
       <div className="tracks-container element">
@@ -57,7 +54,7 @@ const AllPage = () => {
 
       <div className="flex flex-row justify-between items-center px-4 mt-4 ">
         <p className="someWhite font-bold text-lg">Playlists</p>
-        <p className="someGray text-sm font-bold">See more</p>
+        <p className="someGray text-sm font-bold cursor-pointer">See more</p>
       </div>
 
       <div className="grid grid-cols-2 gap-6 px-4 mt-4 h-52 overflow-y-auto whitespace-nowrap element">

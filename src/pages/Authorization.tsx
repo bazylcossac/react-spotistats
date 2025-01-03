@@ -10,7 +10,11 @@ const Autorization = () => {
     }
   }, [userAuthzation]);
 
-  return <Outlet />;
+  return (
+    <div className="flex justify-center ">
+      <Outlet />
+    </div>
+  );
 };
 
 export default Autorization;

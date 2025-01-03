@@ -20,11 +20,11 @@ const Layout = () => {
   }, []);
 
   return (
-    <>
+    <div className="w-[450px] h-full border-4 border-neutral-600 bg-[#1d1d1d] shadow-lg">
       {isLoading && <Loading />}
       {!isLoading && data && <Header data={data?.data} />}
       {!isLoading && data && <Outlet context={data?.data} />}
-    </>
+    </div>
   );
 };
 
