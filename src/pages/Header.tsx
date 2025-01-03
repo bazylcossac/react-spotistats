@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import UserLoginPopUp from "../components/UserLoginPopUp";
 
 const Header = ({ data }) => {
   const navigate = useNavigate();
-  console.log(data);
+
   const viewMode = JSON.parse(sessionStorage.getItem("viewMode")!);
+  const [showUserPopUp, setShowUserPopUp] = useState(false);
   const [formData, setFormData] = useState({ artist: "", type: "artist" });
 
   const handleChange = (event) => {
@@ -22,17 +24,6 @@ const Header = ({ data }) => {
     <div>
       <header className="bg-black fixed top-0 w-[442px] z-50 ">
         <nav className="flex justify-between items-center text-white p-2">
-          {viewMode && (
-            <button
-              className="text-xs bg-neutral-700  px-2 py-1 rounded-lg"
-              onClick={() => {
-                sessionStorage.setItem("viewMode", "false");
-                navigate("/login");
-              }}
-            >
-              Login
-            </button>
-          )}
           <NavLink className="" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,12 +88,18 @@ const Header = ({ data }) => {
             </div>
 
             {data?.images && data?.images.length > 0 && (
-              <div>
+              <div
+                className="relative"
+                onClick={() => {
+                  setShowUserPopUp((prev) => !prev);
+                }}
+              >
                 <img
                   src={data.images[0].url}
                   className="rounded-full p-1 bg-[#292929] "
                   width={40}
                 />
+                {showUserPopUp && viewMode && <UserLoginPopUp />}
               </div>
             )}
           </div>

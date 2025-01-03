@@ -37,13 +37,11 @@ const MainPage = () => {
     playlistLoading,
   };
 
-  console.log(results);
-  console.log(playlists);
-  console.log(playlistLoading);
-
   return (
     <div className="mt-16">
-      {showViewModePopUp && <ViewModePopUp closePopUp={setShowViewModePopUp} />}
+      {showViewModePopUp && viewMode && (
+        <ViewModePopUp closePopUp={setShowViewModePopUp} />
+      )}
       <MainPageNav
         handleTermChange={(event) => handleTermChange(event)}
         term={term}

@@ -12,7 +12,6 @@ const AllPage = () => {
   const { results, playlists, playlistLoading } =
     useOutletContext<TOutletContext>();
   const [savedTracksIds, setSavedTracksIds] = useState([]);
-  console.log(results);
 
   const topArtists = results[0]?.data?.data.items;
   const topTracks = results[1]?.data?.data.items;
@@ -61,7 +60,7 @@ const AllPage = () => {
         <p className="someGray text-sm font-bold cursor-pointer">See more</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 px-4 mt-4 h-52 overflow-y-auto whitespace-nowrap element">
+      <div className="grid grid-cols-2 gap-6 px-4 mt-4 h-64 overflow-y-auto whitespace-nowrap element">
         <PlaylistsElement playlists={playlists} />
       </div>
     </div>
