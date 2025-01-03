@@ -46,7 +46,7 @@ const SignIn = () => {
           to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http://localhost:3001/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
 "
         >
-          <div className="mt-10 flex flex-row gap-2 bg-neutral-900  text-center py-2 px-10 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 transition">
+          <div className="mt-10 flex flex-row gap-2 bg-neutral-900  text-center py-2 px-10 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 hover:text-white/70 transition">
             <p> Login with </p>
 
             <img
@@ -62,12 +62,15 @@ const SignIn = () => {
 
         <div className="flex flex-col items-centee">
           <button
-            className="bg-neutral-900 text-center py-2 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 transition"
-            onClick={() => JSON.stringify(localStorage.setItem("login", true))}
+            className="bg-neutral-900 text-center py-2 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 hover:text-white/70 transition"
+            onClick={() => {
+              sessionStorage.setItem("viewMode", "true");
+              navigate("/");
+            }}
           >
             View mode
           </button>
-          <p className="mt-2 text-white/10 text-sm">
+          <p className="mt-2 text-white/10 text-sm hover:text-white/30 transition">
             Recommended for recruitment process
           </p>
         </div>

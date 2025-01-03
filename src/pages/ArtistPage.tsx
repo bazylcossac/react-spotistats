@@ -31,9 +31,9 @@ const ArtistPage = ({ results }: TArtistPage) => {
     (track) => track.isSaved === undefined
   );
 
-  if (topTracksLoading || !artistData || !topTracks || !topAlbums || !data) {
-    return <Loading />;
-  }
+  // if (topTracksLoading || !artistData || !topTracks || !topAlbums || !data) {
+  //   return <Loading />;
+  // }
   return (
     <div className="mx-4 mt-20 flex flex-col">
       <TopElements artistData={artistData} />

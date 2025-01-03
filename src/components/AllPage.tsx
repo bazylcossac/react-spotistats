@@ -8,13 +8,17 @@ import PlaylistsElement from "../ArtistElements/PlaylistsElement";
 import { useChechSavedTracks } from "../api/getCheckSavedTracks";
 
 const AllPage = () => {
+  const viewMode = JSON.parse(sessionStorage.getItem("viewMode")!);
   const { results, playlists, playlistLoading } =
     useOutletContext<TOutletContext>();
   const [savedTracksIds, setSavedTracksIds] = useState([]);
+  console.log(results);
 
   const topArtists = results[0]?.data?.data.items;
   const topTracks = results[1]?.data?.data.items;
-  const isLoading = results.some((result) => result.isLoading);
+  const isLoading = viewMode
+    ? false
+    : results.some((result) => result.isLoading);
 
   const trackIds = topTracks?.map((track) => track.id);
   const { data } = useChechSavedTracks(trackIds);
@@ -24,11 +28,11 @@ const AllPage = () => {
     isSaved: data?.data[index],
   }));
 
-  const topTracksLoading = topTracksWithSavedValuie?.some(
-    (track) => track.isSaved === undefined
-  );
+  const topTracksLoading = viewMode
+    ? false
+    : topTracksWithSavedValuie?.some((track) => track.isSaved === undefined);
 
-  if (isLoading || playlistLoading || topTracksLoading) {
+  if (isLoading || topTracksLoading) {
     return <Loading />;
   }
 

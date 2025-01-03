@@ -4,7 +4,8 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const Header = ({ data }) => {
   const navigate = useNavigate();
-
+  console.log(data);
+  const viewMode = JSON.parse(sessionStorage.getItem("viewMode")!);
   const [formData, setFormData] = useState({ artist: "", type: "artist" });
 
   const handleChange = (event) => {
@@ -21,6 +22,17 @@ const Header = ({ data }) => {
     <div>
       <header className="bg-black fixed top-0 w-[442px] z-50 ">
         <nav className="flex justify-between items-center text-white p-2">
+          {viewMode && (
+            <button
+              className="text-xs bg-neutral-700  px-2 py-1 rounded-lg"
+              onClick={() => {
+                sessionStorage.setItem("viewMode", "false");
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+          )}
           <NavLink className="" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,9 +53,10 @@ const Header = ({ data }) => {
                   required
                   name="artist"
                   className="bg-[#131313] placeholder-[#b5b5b5] font-bold rounded-lg px-4 py-4 text-sm outline-none"
-                  placeholder="Search..."
+                  placeholder={viewMode ? "Disabled in view mode" : "Search..."}
                   onChange={handleChange}
                   value={formData.artist}
+                  disabled={viewMode}
                 />
               </form>
             </div>

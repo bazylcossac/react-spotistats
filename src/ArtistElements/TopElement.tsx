@@ -8,7 +8,7 @@ function TopElements({ artistData }) {
 
   return (
     <div className="flex flex-row justify-between items-center">
-      <div onClick={goBack} className="inline-block">
+      <div onClick={goBack} className="inline-block cursor-pointer">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

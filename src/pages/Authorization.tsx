@@ -4,11 +4,21 @@ import { useNavigate, Outlet } from "react-router-dom";
 const Autorization = () => {
   const navigate = useNavigate();
   const userAuthzation = localStorage.getItem("login");
+  const viewMode = sessionStorage.getItem("viewMode");
+  if (userAuthzation) {
+    sessionStorage.setItem("viewMode", "false");
+  }
   useEffect(() => {
-    if (!userAuthzation || userAuthzation === null) {
+    if (!userAuthzation || !viewMode || userAuthzation === null) {
       navigate("/login");
     }
-  }, [userAuthzation]);
+    if (!userAuthzation && viewMode) {
+      navigate("/");
+    }
+    if (userAuthzation && !viewMode) {
+      navigate("/");
+    }
+  }, [userAuthzation, viewMode]);
 
   return (
     <div className="flex justify-center ">

@@ -7,6 +7,7 @@ type TMainPageNavProps = {
 };
 
 const MainPageNav = ({ handleTermChange, term }: TMainPageNavProps) => {
+  const viewMode = JSON.parse(sessionStorage.getItem("viewMode")!);
   const ActiveStyle = {
     backgroundColor: "#B1B1B1",
     color: "#353535",
@@ -62,10 +63,9 @@ const MainPageNav = ({ handleTermChange, term }: TMainPageNavProps) => {
           name="term"
           className="bg-[#353535] text-[#B0B0B0] text-center text-xs rounded-lg py-2 px-1 font-semibold"
           onChange={handleTermChange}
-          // onKeyDown={onKeyDown}
           value={term}
         >
-          <option value="short_term">MONTH</option>
+          <option value="short_term"> MONTH</option>
           <option value="medium_term">6 MONTS</option>
           <option value="long_term">YEAR</option>
         </select>
