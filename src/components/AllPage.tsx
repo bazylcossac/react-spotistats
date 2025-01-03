@@ -12,11 +12,12 @@ const AllPage = () => {
     useOutletContext<TOutletContext>();
   const [savedTracksIds, setSavedTracksIds] = useState([]);
 
-  const { data } = useChechSavedTracks(savedTracksIds);
-
   const topArtists = results[0]?.data?.data.items;
   const topTracks = results[1]?.data?.data.items;
   const isLoading = results.some((result) => result.isLoading);
+
+  const trackIds = topTracks?.map((track) => track.id);
+  const { data } = useChechSavedTracks(trackIds);
 
   const topTracksWithSavedValuie = topTracks?.map((track, index) => ({
     track,
@@ -26,9 +27,9 @@ const AllPage = () => {
   const topTracksLoading = topTracksWithSavedValuie?.some(
     (track) => track.isSaved === undefined
   );
-  useEffect(() => {
-    setSavedTracksIds(topTracks?.map((track) => track.id));
-  }, [topTracks]);
+  // useEffect(() => {
+  //   setSavedTracksIds(topTracks?.map((track) => track.id));
+  // }, [topTracks]);
 
   if (isLoading || playlistLoading || topTracksLoading) {
     return <Loading />;

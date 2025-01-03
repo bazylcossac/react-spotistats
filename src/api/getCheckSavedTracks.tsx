@@ -7,8 +7,9 @@ async function getCheckSavedTracks(ids: string[]) {
     throw new Error("Not token or invalid token");
   }
   if (!ids) {
-    throw new Error("No ids provided");
+    return [false];
   }
+
   try {
     const response = await axios.get(
       `https://api.spotify.com/v1/me/tracks/contains?ids=${ids.join(",")}`,

@@ -15,14 +15,11 @@ type TArtistPage = {
 const ArtistPage = ({ results }: TArtistPage) => {
   const [savedTracksIds, setSavedTracksIds] = useState([]);
 
-  const { data } = useChechSavedTracks(savedTracksIds);
-
   const artistData = results[2]?.data.data;
   const topTracks = results[0]?.data.data.tracks;
   const topAlbums = results[1]?.data.data.items;
-
-  // const relatedArtists = results[2]?.data.data.artists;
-
+  const tracksId = topTracks?.map((track) => track.id);
+  const { data } = useChechSavedTracks(tracksId);
   const filteredAlbums = topAlbums.filter(
     (album) => album.album_type === "album"
   );
@@ -33,10 +30,6 @@ const ArtistPage = ({ results }: TArtistPage) => {
   const topTracksLoading = topTracksWithSavedValuie?.some(
     (track) => track.isSaved === undefined
   );
-
-  useEffect(() => {
-    setSavedTracksIds(topTracks?.map((track) => track.id));
-  }, []);
 
   if (topTracksLoading || !artistData || !topTracks || !topAlbums || !data) {
     return <Loading />;
