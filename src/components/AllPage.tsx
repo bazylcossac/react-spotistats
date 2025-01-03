@@ -39,7 +39,7 @@ const AllPage = () => {
         <p className="someGray text-sm font-bold cursor-pointer">See more</p>
       </div>
 
-      <div className="artist-container m-4 overflow-x-scroll py-2">
+      <div className="artist-container h-[100px] mt-2">
         <RelatedArtistsElement relatedArtists={topArtists} />
       </div>
 

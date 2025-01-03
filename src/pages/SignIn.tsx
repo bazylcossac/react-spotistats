@@ -31,8 +31,8 @@ const SignIn = () => {
   }, [data, isSuccess, isError, navigate, setToken]);
 
   return (
-    <>
-      <div className="flex flex-row items-center">
+    <div className="flex flex-col items-center justify-center mt-20">
+      <div className="flex flex-row mt-20  items-center justify-center">
         <img
           className="w-20"
           src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"
@@ -41,14 +41,38 @@ const SignIn = () => {
         <h1 className="text-white font-bold text-4xl ml-4">SpotiStats</h1>
       </div>
 
-      <Link
-        className="p-3 bg-[#2c2c2c] rounded-2xl"
-        to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http://localhost:3001/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
+      <div className="flex flex-col items-center gap-8">
+        <Link
+          to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http://localhost:3001/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
 "
-      >
-        Sign In
-      </Link>
-    </>
+        >
+          <div className="mt-10 flex flex-row gap-2 bg-neutral-900  text-center py-2 px-10 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 transition">
+            <p> Login with </p>
+
+            <img
+              className="w-6"
+              src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"
+              alt="spotify logo"
+            />
+            <p> account</p>
+          </div>
+        </Link>
+
+        <p className="text-white/90 font-bold">OR</p>
+
+        <div className="flex flex-col items-centee">
+          <button
+            className="bg-neutral-900 text-center py-2 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 transition"
+            onClick={() => JSON.stringify(localStorage.setItem("login", true))}
+          >
+            View mode
+          </button>
+          <p className="mt-2 text-white/10 text-sm">
+            Recommended for recruitment process
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
