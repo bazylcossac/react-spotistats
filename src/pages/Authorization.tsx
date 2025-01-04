@@ -21,7 +21,7 @@ const Autorization = () => {
   }, [userAuthzation, viewMode]);
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center">
       <Outlet />
     </div>
   );

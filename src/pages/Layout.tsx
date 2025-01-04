@@ -36,12 +36,14 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="w-[450px] h-screen border-4 border-neutral-600 bg-[#1d1d1d] shadow-lg">
-      {isLoading && <Loading />}
-      {!isLoading && data && <Header data={data?.data} />}
-      {viewMode && <Header data={userData} />}
-      {!isLoading && data && <Outlet context={data?.data} />}
-      {viewMode && <Outlet context={userData} />}
+    <div className="flex flex-row ">
+      <div className="w-[450px]  border-4 border-neutral-600 bg-[#1d1d1d] shadow-lg min-h-screen">
+        {isLoading && <Loading />}
+        {!isLoading && data && <Header data={data?.data} />}
+        {viewMode && <Header data={userData} />}
+        {!isLoading && data && <Outlet context={data?.data} />}
+        {viewMode && <Outlet context={userData} />}
+      </div>
     </div>
   );
 };

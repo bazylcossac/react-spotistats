@@ -2,7 +2,7 @@ import React from "react";
 
 function ViewModePopUp({ closePopUp }) {
   return (
-    <div className="w-[380px] h-[500px] bg-neutral-950 shadow-xl text-white fixed top-1/4 right-1/2 translate-x-1/2 i translate-y-1/12 z-50 rounded-lg px-4 ">
+    <div className="w-[380px] max-h-[500px]  bg-neutral-950 shadow-xl text-white fixed top-1/4 right-1/2 translate-x-1/2 i translate-y-1/12 z-50 rounded-lg px-4 ">
       <button
         onClick={() => closePopUp(false)}
         className="text-red-500 flex justify-end w-full mt-2  hover:text-red-700 transition"
@@ -27,7 +27,7 @@ function ViewModePopUp({ closePopUp }) {
         <li>Period filtering</li>
       </ul>
 
-      <p className="mt-24 text-white/80">
+      <p className="mt-24 mb-4 text-white/80">
         If you want to explore all of this features please log in with your
         <span className="text-green-500"> Spotify Account</span>
       </p>
