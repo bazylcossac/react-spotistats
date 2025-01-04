@@ -7,6 +7,7 @@ import { useAppDataStore } from "../store/AppDataStore";
 
 const Layout = () => {
   const navigate = useNavigate();
+
   const token = useAppDataStore((state) => state.token);
   const viewMode = JSON.parse(sessionStorage.getItem("viewMode")!);
   let userData = [];
