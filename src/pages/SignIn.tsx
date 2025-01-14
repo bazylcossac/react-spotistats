@@ -43,7 +43,7 @@ const SignIn = () => {
 
       <div className="flex flex-col items-center gap-8">
         <Link
-          to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=http://localhost:3001/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
+          to="https://accounts.spotify.com/authorize?client_id=06d408ab38794edb91b879d117ab204f&response_type=code&redirect_uri=https://spoti-stats-project.netlify.app/callback&scope=user-read-private user-read-email user-top-read user-library-modify user-library-read
 "
         >
           <div className="mt-10 flex flex-row gap-2 bg-neutral-900  text-center py-2 px-10 rounded-2xl text-white/60 font-sans font-medium hover:bg-neutral-800 hover:text-white/70 transition">
