@@ -1,6 +1,16 @@
+<div align="left">
+<img src="https://skillicons.dev/icons?i=ts" height="40" alt="typescript logo"  />
+<img width="12" />
+<img src="https://skillicons.dev/icons?i=react" height="40" alt="react logo"  />
+<img width="12" />
+</div>
+
 # SpotiStats 
 **SpotiStats** is a mobile-first application built with **React** and **TypeScript**. Its purpose is to let Spotify users explore their listening statistics, including their most-played tracks and favorite artists. The app integrates with the Spotify API, so a Spotify account is required to use it.
-> ⚠️ **Note:** The application is a work in progress and is not yet complete. I'm sharing it now because I want to move on to learning Next.js, and I feel like this project is holding me back. However, I hope to continue developing it in my free time, and I believe it serves as a good demonstration of my current skills.
+> ⚠️ **Note (25.12.2024):** Spotify has removed some features from their Api so i had to removed them from my app to make it work again. These features are: Playing demo of song, artist related artist's.  
+---
+## Watch demo 📲 
+  [app demo](https://youtube.com/shorts/rYEuFm6o-A8)
 ---
 ## Features 🚀
 - **Spotify Integration**: Log in with your Spotify account.
@@ -18,10 +28,28 @@ I’m aware that **React** may not be the best choice for building mobile applic
 - **Zustand**: For lightweight and flexible state management.
 - **React Query**: For efficient and powerful data fetching and caching.
 ---
-## Next Steps 📈
-As I transition to learning Next.js, I plan to:
-Explore server-side rendering and API integration in Next.js.
-Potentially refactor SpotiStats into a Next.js project in the future.
+
+## How to run locally 💻
+
+Clone project to your folder in your editor
+```bash
+git clone https://github.com/bazylcossac/react-spotistats.git .
+```
+Install dependecies
+```bash
+npm install
+
+```
+If you don't have vite configured
+```bash
+npm install -g vite
+```
+Run app on localhost
+```bash
+npm run dev
+```
+Server will start at port 3001
+---
 ****
 ## Contribution 🤝
 While this project is primarily for learning, feel free to open issues or submit pull requests with suggestions or improvements. I’d love to hear your feedback!
