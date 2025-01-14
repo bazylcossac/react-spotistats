@@ -6,7 +6,9 @@
 </div>
 
 # SpotiStats 
-Live demo: [spoti-stats-project.netlify.app](https://spoti-stats-project.netlify.app/4Gso3d4CscCijv0lmajZWs)
+---
+**Live demo: [spoti-stats-project.netlify.app](https://spoti-stats-project.netlify.app/4Gso3d4CscCijv0lmajZWs)**
+---
 **SpotiStats** is a mobile-first application built with **React** and **TypeScript**. Its purpose is to let Spotify users explore their listening statistics, including their most-played tracks and favorite artists. The app integrates with the Spotify API, so a Spotify account is required to use it.
 > ⚠️ **Note (25.12.2024):** Spotify has removed some features from their Api so i had to removed them from my app to make it work again. These features are: Playing demo of song, artist related artist's.  
 ---
